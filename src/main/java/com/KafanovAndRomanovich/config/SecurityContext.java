@@ -92,7 +92,7 @@ public class SecurityContext extends WebSecurityConfigurerAdapter {
                         //Anyone can access the urls
                         .antMatchers(
                                 "/auth/**",
-                                "/login",
+                                "/login/**",
                                 "/signup/**",
                                 "/user/register/**",
                                 "/user/signIn/**",
@@ -101,6 +101,7 @@ public class SecurityContext extends WebSecurityConfigurerAdapter {
                                 "/user/singlePost/**",
                                 "user/templates/**",
                                 "/getprofile",
+                                "/getUserInfo",
                                 "/saveprofile",
                                 "/savepost",
                                 "/addpost",
@@ -123,7 +124,8 @@ public class SecurityContext extends WebSecurityConfigurerAdapter {
                                 "/getPopularPosts",
                                 "/getCloudTags",
                                 "/getPersonalRating",
-                                "/getTagsPost"
+                                "/getTagsPost",
+                                "/getUserHomePagePosts"
 
 
 

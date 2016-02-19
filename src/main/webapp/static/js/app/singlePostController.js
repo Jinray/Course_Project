@@ -3,6 +3,7 @@
  */
 angular.module('myApp')
 .controller('singlePostController',function($scope,$http,$location){
+
     $scope.post={};
     $scope.userName;
     $scope.scoreRating=0;
@@ -45,6 +46,7 @@ angular.module('myApp')
             data: $scope.id
         }).then(function successCallback(response) {
             $scope.comments=response.data;
+            console.log(response.data)
         }, function errorCallback(response) {
         });
 
@@ -119,7 +121,6 @@ angular.module('myApp')
             data: $scope.id
         }).then(function successCallback(response) {
             $scope.scoreRating=response.data;
-            console.log(response.data)
         }, function errorCallback(response) {
         });
     }
@@ -158,7 +159,6 @@ angular.module('myApp')
             data: commentId
         }).then(function successCallback(response) {
             $scope.comments[$scope.bicycle(commentId)].likes=response.data;
-            console.log($scope.comments[$scope.bicycle(commentId)].likes)
         }, function errorCallback(response) {
         });
     }

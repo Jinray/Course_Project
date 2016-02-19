@@ -114,7 +114,7 @@
                             </div>
                         </div>
                         <div infinite-scroll='extendList()' infinite-scroll-disabled='busy'>
-                            <div ng-repeat="post in posts" ng-hide="$index > postListLen+1">
+                            <div ng-repeat="post in posts" ng-hide="$index > postListLen+2">
                                 <div class="panel panel-default">
                                     <div class="article-header">
                                         <img ng-src="{{post.image}}" alt="">
@@ -140,7 +140,8 @@
                                             </div>
 
                                             <div>
-                                                <a ng-repeat="tag in post.tags" href="${pageContext.request.contextPath}/user/login/tags={{post.tags[$index].text}}"
+                                                <a ng-repeat="tag in post.tags"
+                                                   href="${pageContext.request.contextPath}/user/login/tags={{post.tags[$index].text}}"
                                                    class="tag label label-primary" style="margin-right: 4px;">
                                                     {{post.tags[$index].text}}
                                                 </a>

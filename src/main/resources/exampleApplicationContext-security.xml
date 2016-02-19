@@ -27,7 +27,7 @@
                 delete-cookies="JESSIONID"/>
         <!-- Anyone can access these urls -->
         <security:intercept-url pattern="/auth/**" access="permitAll"/>
-        <security:intercept-url pattern="/login" access="permitAll"/>
+        <security:intercept-url pattern="/login/**" access="permitAll"/>
         <security:intercept-url pattern="/signin/**" access="permitAll"/>
         <security:intercept-url pattern="/signup/**" access="permitAll"/>
         <security:intercept-url pattern="/user/signIn/**" access="permitAll"/>
@@ -60,6 +60,9 @@
         <security:intercept-url pattern="/getCloudTags" access="permitAll"/>
         <security:intercept-url pattern="/getPersonalRating" access="permitAll"/>
         <security:intercept-url pattern="/getTagsPost" access="permitAll"/>
+        <security:intercept-url pattern="/getUserHomePagePosts" access="permitAll"/>
+        <security:intercept-url pattern="/getUserInfo" access="permitAll"/>
+
 
 
 

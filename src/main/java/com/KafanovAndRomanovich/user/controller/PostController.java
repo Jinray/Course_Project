@@ -12,6 +12,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.util.JSONPObject;
 import org.cloudinary.json.JSONObject;
 import org.hibernate.mapping.*;
+import org.hibernate.mapping.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -50,6 +51,7 @@ public class PostController {
         Collections.reverse(result);
         return result;
     }
+
     @RequestMapping(value = "/getPopularPosts", method = RequestMethod.GET)
     public List<PostUser> getPopularPosts() {
         List<Post> posts = postService.findAll();
@@ -57,7 +59,7 @@ public class PostController {
         Collections.sort(result);
         try {
             return result.subList(0, 5);
-        }catch (IndexOutOfBoundsException e){
+        } catch (IndexOutOfBoundsException e) {
             return result;
         }
     }
@@ -156,9 +158,10 @@ public class PostController {
         Collections.reverse(result);
         return result;
     }
+
     @RequestMapping(value = "/getTagsPost", method = RequestMethod.POST)
     public List<PostUser> getTagsPosts(@RequestBody String tags) {
-        Tag tag=tagService.findByText(tags);
+        Tag tag = tagService.findByText(tags);
         List<Post> posts = tag.getPosts();
         List<PostUser> result = postService.getAllPosts(posts);
         Collections.reverse(result);
@@ -171,13 +174,13 @@ public class PostController {
             ObjectMapper mapper = new ObjectMapper();
             PostRating postRating = mapper.readValue(ratings, PostRating.class);
             Post post = postService.findOne(postRating.getPostId());
-            User user=userService.findUser(principal.getName());
+            User user = userService.findUser(principal.getName());
             Rating rating = new Rating();
             rating.setUser(user);
             rating.setPost(post);
             rating.setPositive(postRating.isPositive());
-            ratingService.saveOrDeleteRating(rating,post);
-            int result=ratingService.getScore(post);
+            ratingService.saveOrDeleteRating(rating, post);
+            int result = ratingService.getScore(post);
             return result;
         }
         return null;
@@ -186,21 +189,38 @@ public class PostController {
     @RequestMapping(value = "/getRating", method = RequestMethod.POST)
     public Integer getRating(@RequestBody Long id) {
         Post post = postService.findOne(id);
-        int result=ratingService.getScore(post);
+        int result = ratingService.getScore(post);
         return result;
 
     }
+
     @RequestMapping(value = "/getPersonalRating", method = RequestMethod.POST)
     public
     @ResponseBody
-    Rating getPersonalRating(@RequestBody Long id,Principal principal){
-        if (principal!=null){
-            Post post=postService.findOne(id);
-            User user=userService.findUser(principal.getName());
-            Rating rating= ratingService.findByUserAndPost(user,post);
+    Rating getPersonalRating(@RequestBody Long id, Principal principal) {
+        if (principal != null) {
+            Post post = postService.findOne(id);
+            User user = userService.findUser(principal.getName());
+            Rating rating = ratingService.findByUserAndPost(user, post);
             return rating;
         }
         return null;
+    }
+
+    @RequestMapping(value = "/getUserHomePagePosts", method = RequestMethod.POST)
+    public List<Post> getUserHomePagePosts(@RequestBody Long id) {
+        User user = userService.findOne(id);
+        List<Post> result = user.getPosts();
+        Collections.reverse(result);
+        return result;
+    }
+
+
+    @RequestMapping(value = "/getUserInfo", method = RequestMethod.POST)
+    public User getUserInfo(@RequestBody Long id) {
+        User user = userService.findOne(id);
+        return user;
+
     }
 
 

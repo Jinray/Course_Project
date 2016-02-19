@@ -101,6 +101,11 @@ public class RepositoryUserService implements UserService {
     }
 
     @Override
+    public User findOne(Long id) {
+        return repository.findOne(id);
+    }
+
+    @Override
     public User updateUser(User user) {
         User oldUser=findUser(user.getEmail());
         oldUser.setLastName(user.getLastName());

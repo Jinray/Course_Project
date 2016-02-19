@@ -3,6 +3,7 @@
  */
 angular.module('myApp')
 .controller('startPageController', function($scope, $http,$location) {
+
     $scope.articles = [];
     $scope.popArticles=[];
     $scope.postListLen = 0;
@@ -74,6 +75,10 @@ angular.module('myApp')
     var url=$location.absUrl().substring(0,$location.absUrl().indexOf('?'));
     if(url==="")
         url=$location.absUrl();
+    if(url.indexOf('#')!==-1)
+    {
+        url=url.substring(0,url.indexOf('#'));
+    }
     if(url.indexOf("category")!==-1)
     {
 

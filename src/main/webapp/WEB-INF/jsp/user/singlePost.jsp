@@ -21,7 +21,7 @@
 
                 <div class="article-body">
                     <div class="article-title article-title-1 article-title-font">
-                        <a href="#">{{post.title}}</a>
+                        <span>{{post.title}}</span>
                         <div style="float:right">
                             <sec:authorize access="isAuthenticated()">
                             <a href="javascript:void(0)" ng-click="removeRating()" style="text-decoration: none;">
@@ -35,11 +35,19 @@
                     </div>
                     <div class="article-info">
                         <spring:message code="label.post.author"/>:
-                        <a href="#" class="text-primary">{{userName}}</a>,
+                        <a href="${pageContext.request.contextPath}/user/userHomePage/{{userId}}" class="text-primary">{{userName}}</a>,
                         <spring:message code="label.post.postCategory"/>:
-                        <a href="#" class="text-primary">{{post.category}}</a>,
+                        <a href="${pageContext.request.contextPath}/user/login/category={{post.category}}" class="text-primary">{{post.category}}</a>,
                         <spring:message code="label.post.PostDate"/>: {{convertDate(post.date)}}
                     </div>
+                    <div>
+                        <a ng-repeat="tag in post.tags"
+                           href="${pageContext.request.contextPath}/user/login/tags={{post.tags[$index].text}}"
+                           class="tag label label-primary" style="margin-right: 4px;">
+                            {{post.tags[$index].text}}
+                        </a>
+                    </div>
+                    <hr>
                     <div id='markpost'>
                     </div>
                 </div>
@@ -80,7 +88,7 @@
             <div class="col-md-10">
                 <div style="border-bottom: 1px solid #ccc; padding: 10px 0 10px 0; font-size: 14px">
                     <span>
-                        <a href="#" class="text-primary">{{comment.user.firstName}}
+                        <a href="${pageContext.request.contextPath}/user/userHomePage/{{comment.user.id}}" class="text-primary">{{comment.user.firstName}}
                             {{comment.user.lastName}}</a>
                         &nbsp&nbsp&nbsp&nbsp
                         <spring:message code="label.post.PostDate"/>: {{convertDate(comment.date)}}

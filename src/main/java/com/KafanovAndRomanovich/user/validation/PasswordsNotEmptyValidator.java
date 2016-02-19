@@ -3,9 +3,7 @@ package com.KafanovAndRomanovich.user.validation;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-/**
- * @author Petri Kainulainen
- */
+
 public class PasswordsNotEmptyValidator implements ConstraintValidator<PasswordsNotEmpty, Object> {
 
     private String validationTriggerFieldName;

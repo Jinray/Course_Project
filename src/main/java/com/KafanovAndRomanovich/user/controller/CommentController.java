@@ -58,7 +58,7 @@ public class CommentController {
             commentPost.setDate(date);
             return commentPost;
         }
-        return new CommentPost();//todo isAunthentificated and refactor
+        return new CommentPost();//todo  and refactor
     }
 
     @RequestMapping(value = "/getComments", method = RequestMethod.POST)

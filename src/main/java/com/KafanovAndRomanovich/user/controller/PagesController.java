@@ -36,7 +36,6 @@ public class PagesController {
     @RequestMapping(value = "/user/signIn", method = RequestMethod.GET)
     public String showSignIn(WebRequest request) {
         LOGGER.debug("Rendering SignIn page.");
-
         return VIEW_NAME_SIGNIN_PAGE;
     }
     @RequestMapping(value = "/user/profilePage", method = RequestMethod.GET)
