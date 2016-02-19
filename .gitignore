@@ -1,0 +1,10 @@
+*.class
+
+#idea files
+*.iml
+*.ipr
+*.iws
+*.ids
+.idea/
+socialConfig.properties
+target

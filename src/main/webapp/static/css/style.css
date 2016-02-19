@@ -1,0 +1,177 @@
+.content {
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+.sign-in-text {
+    padding-right: 2em;
+}
+
+.social-button-row {
+    padding-top: 1.0em;
+}
+
+.custom-col-md-4 {
+    position: relative;
+    min-height: 1px;
+    padding-left: 10px;
+    padding-right: 10px;
+
+}
+
+@media (min-width: 1350px) {
+    .custom-col-md-4 {
+        float: left;
+        width: 33.33333333%;
+    }
+}
+.inputStyle{
+    display: block;
+    width: 100%;
+    height: 38px;
+    padding: 8px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #333333;
+    margin: 0 0 10px 0;
+    background-color: #ffffff;
+    background-image: none;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+.labelStyle {
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: large;
+}
+
+
+/* РҐРЈР№РЅСЏ РґР»СЏ Drag & Drop */
+
+.postImageContainer {
+    width: 33.33%;
+    float: left;
+    margin: 0 20px 5px 0;
+    pointer-events: none;
+    border: 5px solid transparent;
+}
+.postImageContainer:after {
+    /* Drag Prevention */
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.postImageContainer img {
+    width: 100%;
+    display: block;
+
+}
+.location {
+    text-transform: uppercase;
+    color: #999;
+    letter-spacing: 1px;
+    margin: 0 0 10px 0;
+    font-size: 90%;
+}
+
+.postImageContainer {
+    width: 100%;
+    display:inline-block;
+    vertical-align:middle;
+    float: left;
+    position: relative;
+    /*margin: 20px 20px 5px 0;*/
+    /*pointer-events: none;*/
+}
+
+.image {
+    padding: 4px;
+    line-height: 1.42857143;
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+    border-radius: 4px;
+    -webkit-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    display: inline-block;
+    width: 100%;
+    height: auto;
+    min-height: 400px;
+    position: relative;
+    margin-top: 15px;
+}
+.unSelected{
+    width: 100%;
+}
+
+.unSelected.selected{
+    background-color: #c0c0c0;
+}
+
+
+
+/*width: 100%;*/
+/*display:inline-block;*/
+/*vertical-align:middle;*/
+/*float: left;*/
+/*position: relative;*/
+/*margin: 0 20px 5px 0;*/
+/*pointer-events: none;*/
+/*border: 1px solid #bbb;*/
+
+/*asdasd*/
+.dropzone {
+    /*display:inline-block;*/
+
+    vertical-align:middle;
+    width: 100%;
+    height: 40px;
+    border: 1px solid #bbb;
+    text-align: center;
+    font-family: Arial;
+    /*overflow: auto;*/
+
+}
+
+.bn-demo {
+    border: 2px dashed #CCCCCC ;
+    border-radius: 4px 4px 4px 4px ;
+    display: block ;
+    width: 464px;
+    height:464px;
+    margin-right: 20px;
+    overflow: auto ;
+}
+.thumb {
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.file-name {
+    font-family: Arial;
+}
+
+.like {
+
+}
+.like:hover {
+    color: green;
+}
+
+.dislike {
+
+}
+.dislike:hover {
+    color: red;
+}
