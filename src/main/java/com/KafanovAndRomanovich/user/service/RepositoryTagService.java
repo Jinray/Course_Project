@@ -140,4 +140,9 @@ public class RepositoryTagService implements TagService {
         }
         return post;
     }
+
+    @Override
+    public Tag findByText(String text) {
+        return tagRepository.findByText(text);
+    }
 }

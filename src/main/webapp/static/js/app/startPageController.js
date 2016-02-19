@@ -2,11 +2,14 @@
  * Created by Alex on 18.02.2016.
  */
 angular.module('myApp')
-.controller('startPageController', function($scope, $http) {
+.controller('startPageController', function($scope, $http,$location) {
     $scope.articles = [];
     $scope.popArticles=[];
     $scope.postListLen = 0;
     $scope.search="";
+
+
+
     $scope.getAllPosts = function () {
         $http({
             method: 'GET',
@@ -28,7 +31,6 @@ angular.module('myApp')
         });
     };
     $scope.getPopularPosts();
-    $scope.getAllPosts();
     $scope.convertDate = function (date) {
         if (typeof date === 'undefined')
             return "";
@@ -55,6 +57,37 @@ angular.module('myApp')
         }, function errorCallback(response) {
         });
     };
+    $scope.getTagsPosts = function (tags) {
+
+        $http({
+            method: 'POST',
+            url: '/getTagsPost',
+            headers: {
+                'Content-Type': "application/json"
+            },
+            data: tags
+        }).then(function successCallback(response) {
+            $scope.articles=response.data;
+        }, function errorCallback(response) {
+        });
+    };
+    var url=$location.absUrl().substring(0,$location.absUrl().indexOf('?'));
+    if(url==="")
+        url=$location.absUrl();
+    if(url.indexOf("category")!==-1)
+    {
+
+        url=url.substring(url.indexOf('=')+1);
+        $scope.getCategoryPosts(url);
+    }
+    else if(url.indexOf("tags")!==-1){
+        url=url.substring(url.indexOf('=')+1);
+        $scope.getTagsPosts(url);
+    }else $scope.getAllPosts();
+
+
+
+
     $scope.getSearchResults = function () {
         $http({
             method: 'POST',

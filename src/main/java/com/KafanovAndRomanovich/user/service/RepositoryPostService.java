@@ -51,11 +51,14 @@ public class RepositoryPostService implements PostService {
         return postRepository.findByCategory(category);
     }
 
+
+
     public List<PostUser> getAllPosts(List<Post> posts){
         PostUser postUser;
         List<PostUser> result=new ArrayList<>();
         for (Post post :posts) {
             postUser=new PostUser();
+            postUser.setUserId(post.getUser().getId());
             postUser.setId(post.getId());
             postUser.setText(post.getText());
             postUser.setTitle(post.getTitle());

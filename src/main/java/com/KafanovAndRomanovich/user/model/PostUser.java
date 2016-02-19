@@ -10,6 +10,8 @@ import java.util.List;
  * Created by Alex on 17.02.2016.
  */
 public class PostUser implements Comparable<PostUser> {
+
+    private Long userId;
     private String lastName;
     private String firstName;
     private Long id;
@@ -22,6 +24,13 @@ public class PostUser implements Comparable<PostUser> {
     private String email;
     private List<Comment> comments;
     private List<Tag> tags;
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
 
     public List<Tag> getTags() {
         return tags;

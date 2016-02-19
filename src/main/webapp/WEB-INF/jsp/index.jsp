@@ -115,38 +115,33 @@
                         </div>
                         <div infinite-scroll='extendList()' infinite-scroll-disabled='busy'>
                             <div ng-repeat="post in posts" ng-hide="$index > postListLen+1">
-                                <div class="b-blog-listing__block">
-                                    <div class="b-blog-listing__block-top">
-                                        <div class=" view view-sixth">
-                                            <img data-retina="" ng-src="{{post.image}}" alt="">
-                                        </div>
+                                <div class="panel panel-default">
+                                    <div class="article-header">
+                                        <img ng-src="{{post.image}}" alt="">
                                     </div>
-                                    <div class="b-infoblock-with-icon b-blog-listing__infoblock">
-                                        <a href="#"
-                                           class="b-infoblock-with-icon__icon f-infoblock-with-icon__icon fade-in-animate hidden-xs">
-                                            <i class="fa fa-pencil"></i>
-                                        </a>
-                                        <div class="b-infoblock-with-icon__info f-infoblock-with-icon__info">
+                                    <div class="article">
+                                        <div class="article-body">
                                             <a href="${pageContext.request.contextPath}/user/singlePost/{{post.id}}"
-                                               class="f-infoblock-with-icon__info_title b-infoblock-with-icon__info_title f-primary-l b-title-b-hr f-title-b-hr">
+                                               class="article-title article-title-1 article-title-font">
                                                 {{post.title}}
                                             </a>
-                                            <div class="f-infoblock-with-icon__info_text b-infoblock-with-icon__info_text f-primary-b b-blog-listing__pretitle">
+                                            <div class="article-info">
                                                 <spring:message code="label.post.author"/>:
-                                                <a href="#" class="f-more">{{profile.lastName}}
+                                                <a href="#" class="text-primary">{{profile.lastName}}
                                                     {{profile.firstName}}</a>,
                                                 <spring:message code="label.post.postCategory"/>:
-                                                <a href="#" class="f-more">{{post.category}}</a>,
+                                                <a href="${pageContext.request.contextPath}/user/login/category={{post.category}}" class="text-primary">{{post.category}}</a>,
                                                 <spring:message code="label.post.PostDate"/>: {{convertDate(post.date)}}
                                                 <div style="float: right;"><a
                                                         href="${pageContext.request.contextPath}/user/singlePost/{{post.id}}"
-                                                        class="f-more f-primary-b">
-                                                    <i class="fa fa-comment"></i> {{post.comments.length}} <spring:message
+                                                        class="text-primary">
+                                                    <i class="icon-comment"></i> {{post.comments.length}} <spring:message
                                                         code="label.post.comments"/></a></div>
                                             </div>
 
                                             <div>
-                                                <a ng-repeat="tag in post.tags" href="#" class="label label-primary" style="margin-right: 4px;">
+                                                <a ng-repeat="tag in post.tags" href="${pageContext.request.contextPath}/user/login/tags={{post.tags[$index].text}}"
+                                                   class="tag label label-primary" style="margin-right: 4px;">
                                                     {{post.tags[$index].text}}
                                                 </a>
                                             </div>
@@ -155,10 +150,9 @@
                                             <div style="max-height: 400px; text-overflow:ellipsis; overflow:hidden;">
                                                 <posttext-directive></posttext-directive>
                                             </div>
-                                            <div class="f-infoblock-with-icon__info_text b-infoblock-with-icon__info_text">
+                                            <div class="article-info">
                                                 <a href="${pageContext.request.contextPath}/user/singlePost/{{post.id}}"
-                                                   hides" class="f-more f-primary-b"><spring:message
-                                                    code="label.post.readMore"/>
+                                                   class="text-primary"><spring:message code="label.post.readMore"/>
                                                 </a>
                                             </div>
                                         </div>
@@ -170,7 +164,7 @@
                     </div>
                     <div class="col-md-3 col-md-pull-9">
                         <div style="width: 100%; text-align: center">
-                            <img alt="Bootstrap Image Preview" ng-src="{{profile.photo}}"
+                            <img alt="Avatar" ng-src="{{profile.photo}}"
                                  class="img-thumbnail">
                         </div>
                         <h5><spring:message code="label.user.firstName"/>: {{profile.firstName}}</h5>

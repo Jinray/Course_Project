@@ -156,6 +156,14 @@ public class PostController {
         Collections.reverse(result);
         return result;
     }
+    @RequestMapping(value = "/getTagsPost", method = RequestMethod.POST)
+    public List<PostUser> getTagsPosts(@RequestBody String tags) {
+        Tag tag=tagService.findByText(tags);
+        List<Post> posts = tag.getPosts();
+        List<PostUser> result = postService.getAllPosts(posts);
+        Collections.reverse(result);
+        return result;
+    }
 
     @RequestMapping(value = "/changeRating", method = RequestMethod.POST)
     public Integer changeRating(@RequestBody String ratings, Principal principal) throws IOException {

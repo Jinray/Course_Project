@@ -33,6 +33,7 @@
         <security:intercept-url pattern="/user/signIn/**" access="permitAll"/>
         <security:intercept-url pattern="/user/profilePage/**" access="permitAll"/>
         <security:intercept-url pattern="/user/singlePost/**" access="permitAll"/>
+        <security:intercept-url pattern="/user/userHomePage/**" access="permitAll"/>
         <security:intercept-url pattern="/user/templates/**" access="permitAll"/>
         <security:intercept-url pattern="/user/register/**" access="permitAll"/>
         <security:intercept-url pattern="/getprofile" access="permitAll"/>
@@ -58,6 +59,7 @@
         <security:intercept-url pattern="/getPopularPosts" access="permitAll"/>
         <security:intercept-url pattern="/getCloudTags" access="permitAll"/>
         <security:intercept-url pattern="/getPersonalRating" access="permitAll"/>
+        <security:intercept-url pattern="/getTagsPost" access="permitAll"/>
 
 
 

@@ -25,5 +25,6 @@ public interface TagService {
     List<Post> gatAllPostsByTag(String value);
     Tag save(Tag tag);
     Post updateTags(Post post,List<Tag> tags);
+    Tag findByText(String text);
 
 }

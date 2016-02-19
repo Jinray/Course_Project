@@ -97,6 +97,7 @@ public class SecurityContext extends WebSecurityConfigurerAdapter {
                                 "/user/register/**",
                                 "/user/signIn/**",
                                 "/user/profilePage/**",
+                                "/user/userHomePage/**",
                                 "/user/singlePost/**",
                                 "user/templates/**",
                                 "/getprofile",
@@ -121,7 +122,8 @@ public class SecurityContext extends WebSecurityConfigurerAdapter {
                                 "/changeLikes",
                                 "/getPopularPosts",
                                 "/getCloudTags",
-                                "/getPersonalRating"
+                                "/getPersonalRating",
+                                "/getTagsPost"
 
 
 

@@ -6,6 +6,7 @@
        xmlns:social="http://www.springframework.org/schema/social"
        xmlns:facebook="http://www.springframework.org/schema/social/facebook"
        xmlns:vkontakte="http://www.springframework.org/schema/social/vkontakte"
+       xmlns:linkedin="http://www.springframework.org/schema/social/linkedin"
 
 
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
@@ -13,6 +14,7 @@
        http://www.springframework.org/schema/social http://www.springframework.org/schema/social/spring-social.xsd
        http://www.springframework.org/schema/social/twitter http://www.springframework.org/schema/social/spring-social-twitter.xsd
        http://www.springframework.org/schema/social/facebook http://www.springframework.org/schema/social/spring-social-facebook.xsd
+       http://www.springframework.org/schema/social/linkedin  http://www.springframework.org/schema/social/spring-social-linkedin.xsd
        http://www.springframework.org/schema/social/vkontakte http://www.springframework.org/schema/social/spring-social-vkontakte-1.0.xsd">
 
     <!-- Ensures that configuration properties are read from a property file -->
@@ -24,6 +26,8 @@
     <facebook:config app-id="${facebook.app.id}" app-secret="${facebook.app.secret}"/>
     <twitter:config app-id="${twitter.consumer.key}" app-secret="${twitter.consumer.secret}"/>
     <vkontakte:config app-id="${vk.app.id}" app-secret="${vk.app.secret}"/>
+    <linkedin:config app-id="${linkedin.app.id}" app-secret="${linkedin.app.secret}"/>
+
     <!--
         Configures the connection repository. This application uses JDBC
         connection repository which saves connection details to database.

@@ -12,47 +12,41 @@
 
 <div ng-app="myApp" ng-controller="singlePostController" class=" col-md-8"
      style="margin: 0 16.5% 40px 16.5%; border: 1px solid #fff;">
-    <div class="b-blog-listing__block col-md-12">
-        <div>
-            <div class="b-blog-listing__block-top">
-                <div class="view view-sixth">
-                    <img data-retina="" ng-src="{{post.image}}" alt="">
-                </div>
+    <div class="page-container col-md-12">
+        <div class="panel panel-default">
+            <div class="article-header">
+                <img ng-src="{{post.image}}" alt="">
             </div>
-            <div class="b-infoblock-with-icon b-blog-listing__infoblock">
+            <div class="article">
 
-                <div class="b-infoblock-with-icon__info f-infoblock-with-icon__info">
-                    <div class="f-infoblock-with-icon__info_title b-infoblock-with-icon__info_title f-primary-l b-title-b-hr f-title-b-hr">
+                <div class="article-body">
+                    <div class="article-title article-title-1 article-title-font">
                         <a href="#">{{post.title}}</a>
                         <div style="float:right">
                             <sec:authorize access="isAuthenticated()">
                                 <a ng-click="removeRating()" href="#" class="dislike">
-                                    </sec:authorize><i class="icon-thumbs-down" style="font-size: 1.5em">
-                                    </i>
+                                    </sec:authorize><i class="icon-thumbs-down" style="font-size: 1.5em"></i>
                                 </a>
-                            <label>{{scoreRating}}</label>
-                                <sec:authorize access="isAuthenticated()"><a href="#" ng-click="addRating()" class="like"></sec:authorize><i class="icon-thumbs-up"
-                                                                               style="font-size: 1.5em"></i></a>
+                            <label>{{scoreRating}}&nbsp</label>
+                                <sec:authorize access="isAuthenticated()">
+                                    <a href="#" ng-click="addRating()" class="like">
+                                        </sec:authorize><i class="icon-thumbs-up" style="font-size: 1.5em"></i></a>
                         </div>
                     </div>
-                    <div class="f-infoblock-with-icon__info_text f-primary-b b-blog-listing__pretitle">
+                    <div class="article-info">
                         <spring:message code="label.post.author"/>:
-                        <a href="#" class="f-more">{{userName}}</a>,
+                        <a href="#" class="text-primary">{{userName}}</a>,
                         <spring:message code="label.post.postCategory"/>:
-                        <a href="#" class="f-more">{{post.category}}</a>,
+                        <a href="#" class="text-primary">{{post.category}}</a>,
                         <spring:message code="label.post.PostDate"/>: {{convertDate(post.date)}}
-                        <i class="fa fa-arrow-right"></i>
                     </div>
-                    <div id='markpost'
-                         class="f-infoblock-with-icon__info_text b-infoblock-with-icon__info_text c-primary b-blog-listing__text"></div>
-
-                    <div class="f-infoblock-with-icon__info_text b-infoblock-with-icon__info_text">
+                    <div id='markpost'>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div id="editor" class="b-blog-listing__block col-md-12">
+    <div id="editor" class="panel panel-default col-md-12" style="padding-top: 20px">
         <sec:authorize access="isAuthenticated()">
             <div style="margin-bottom: 15px;">
                 <textarea ng-model="text" id="editor1" rows="20" style="width: 100%;"></textarea>
@@ -77,7 +71,6 @@
                 </script>
             </div>
         </sec:authorize>
-
 
         <div ng-repeat="comment in comments" class="col-md-12"
              style="border: 1px solid #ccc; padding: 0 0 0 0; margin-bottom: 15px;">
