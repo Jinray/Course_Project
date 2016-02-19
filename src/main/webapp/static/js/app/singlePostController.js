@@ -7,6 +7,8 @@ angular.module('myApp')
     $scope.userName;
     $scope.scoreRating=0;
     $scope.userId;
+    $scope.isMarked = false;
+    $scope.isPositive = false;
     $scope.comments=[];
     $scope.commentPost={};
     var url=$location.absUrl().substring(0,$location.absUrl().indexOf('?'));
@@ -170,6 +172,14 @@ angular.module('myApp')
             data: $scope.id
         }).then(function successCallback(response) {
             $scope.personalRating=response.data;
+            if ($scope.personalRating == "") {
+                $scope.isMarked = false;
+                $scope.isPositive = false;
+            }
+            else {
+                $scope.isMarked = true;
+                $scope.isPositive = $scope.personalRating.positive;
+            }
         }, function errorCallback(response) {
         });
     }

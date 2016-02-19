@@ -24,13 +24,13 @@
                         <a href="#">{{post.title}}</a>
                         <div style="float:right">
                             <sec:authorize access="isAuthenticated()">
-                                <a ng-click="removeRating()" href="#" class="dislike">
-                                    </sec:authorize><i class="icon-thumbs-down" style="font-size: 1.5em"></i>
-                                </a>
+                            <a href="javascript:void(0)" ng-click="removeRating()" style="text-decoration: none;">
+                                </sec:authorize><span ng-class="{'dislike-active': !isPositive && isMarked}" class="icon-thumbs-down dislike" style="font-size: 1.5em"></span>
+                            </a>
                             <label>{{scoreRating}}&nbsp</label>
-                                <sec:authorize access="isAuthenticated()">
-                                    <a href="#" ng-click="addRating()" class="like">
-                                        </sec:authorize><i class="icon-thumbs-up" style="font-size: 1.5em"></i></a>
+                            <sec:authorize access="isAuthenticated()">
+                            <a href="javascript:void(0)" ng-click="addRating()" style="text-decoration: none;">
+                                </sec:authorize><span ng-class="{'like-active': isPositive && isMarked}" class="icon-thumbs-up like" style="font-size: 1.5em"></span></a>
                         </div>
                     </div>
                     <div class="article-info">

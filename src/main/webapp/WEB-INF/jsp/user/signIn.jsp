@@ -66,9 +66,9 @@
                         </a>
                     </div>
                     <div class="custom-col-md-4" style="text-align: center;">
-                        <a style="display: block; width: 100%;" href="${pageContext.request.contextPath}/auth/vkontakte">
-                            <button class="btn btn-vk" style="width: 100%;">
-                                <i class="icon-vk"></i> | <spring:message code="label.vk.sign.in.button"/>
+                        <a style="display: block; width: 100%;" href="${pageContext.request.contextPath}/auth/linkedin">
+                            <button class="btn btn-linkedin" style="width: 100%;">
+                                <i class="icon-linkedin"></i> | <spring:message code="label.vk.sign.in.button"/>
                             </button>
                         </a>
                     </div>

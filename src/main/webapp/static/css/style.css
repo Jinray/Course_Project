@@ -123,16 +123,22 @@
 }
 
 .like {
-
+    color: #888888;
 }
-.like:hover {
+.like:hover{
+    color: green;
+}
+.like-active {
     color: green;
 }
 
 .dislike {
-
+    color: #888888;
 }
 .dislike:hover {
+    color: red;
+}
+.dislike-active {
     color: red;
 }
 

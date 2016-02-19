@@ -7,7 +7,7 @@
 <head>
     <title><spring:message code="spring.social.mvc.normal.title"/></title>
     <link rel="stylesheet" type="text/css" href="/<spring:theme code='styleSheet'/>"/>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/main-default.css"/>
+    <%--<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/main-default.css"/>--%>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/font-awesome.css"/>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/style.css"/>
     <link rel="stylesheet" type="text/css"
@@ -91,8 +91,8 @@
                                 <i class="icon-twitter-sign"></i>
                             </c:if>
 
-                            <c:if test="${signInProvider == 'VK'}">
-                                <i class="icon-vk-sign"></i>
+                            <c:if test="${signInProvider == 'LINKEDIN'}">
+                                <i class="icon-linkedin-sign"></i>
                             </c:if>
                             <c:if test="${empty signInProvider}">
                                 <spring:message code="label.navigation.signed.in.as.text"/>
