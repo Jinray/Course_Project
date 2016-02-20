@@ -40,25 +40,25 @@
         </div>
         <div class="col-md-6" style="float: left;">
             <label for="f" class="labelStyle"><spring:message code="label.user.firstName"/>:</label>
-            <input id="f" class="inputStyle" ng-model="profile.firstName"/>
+            <input id="f" class="inputStyle" maxlength="40" ng-model="profile.firstName"/>
 
             <label for="l" class="labelStyle"><spring:message code="label.user.lastName"/>:</label>
-            <input id="l" class="inputStyle" ng-model="profile.lastName"/>
+            <input id="l" class="inputStyle" maxlength="40" ng-model="profile.lastName"/>
 
             <label for="d" class="labelStyle"><spring:message code="label.user.datebirth"/>:</label>
-            <input id="d" type="date" class="inputStyle" ng-model="birthday"/>
+            <input id="d" type="date" max="2015-12-31" min="1950-12-31" class="inputStyle" ng-model="birthday"/>
 
             <label for="c" class="labelStyle"><spring:message code="label.user.city"/>:</label>
-            <input id="c" class="inputStyle" ng-model="profile.city"/>
+            <input id="c" class="inputStyle" maxlength="40" ng-model="profile.city"/>
 
             <label for="ed" class="labelStyle"><spring:message code="label.user.education"/>:</label>
-            <input id="ed" class="inputStyle" ng-model="profile.education"/>
+            <input id="ed" class="inputStyle" maxlength="40" ng-model="profile.education"/>
 
             <label for="i" class="labelStyle"><spring:message code="label.user.interests"/>:</label>
-            <input id="i" class="inputStyle" ng-model="profile.interests"/>
+            <input id="i" class="inputStyle" maxlength="40" ng-model="profile.interests"/>
 
             <label for="s" class="labelStyle"><spring:message code="label.user.skype"/>:</label>
-            <input id="s" class="inputStyle" ng-model="profile.skype"/>
+            <input id="s" class="inputStyle" maxlength="40" ng-model="profile.skype"/>
         </div>
 
 

@@ -1,10 +1,7 @@
 package com.KafanovAndRomanovich.user.controller;
 
 import com.KafanovAndRomanovich.user.model.*;
-import com.KafanovAndRomanovich.user.service.PostService;
-import com.KafanovAndRomanovich.user.service.RatingService;
-import com.KafanovAndRomanovich.user.service.TagService;
-import com.KafanovAndRomanovich.user.service.UserService;
+import com.KafanovAndRomanovich.user.service.*;
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
 import com.fasterxml.jackson.databind.DeserializationFeature;
@@ -41,6 +38,8 @@ public class PostController {
     private PostService postService;
     @Autowired
     private RatingService ratingService;
+    @Autowired
+    AchievementService achievementService;
 
     private Cloudinary cloud;
 
@@ -88,6 +87,7 @@ public class PostController {
             post.setUser(user);
             user.updatePost(post);
             userService.save(user);
+            achievementService.addPostAchievement(user);
             return 200;
         } else return 404;
     }
@@ -180,6 +180,7 @@ public class PostController {
             rating.setPost(post);
             rating.setPositive(postRating.isPositive());
             ratingService.saveOrDeleteRating(rating, post);
+            achievementService.addRatingAchievement(user);
             int result = ratingService.getScore(post);
             return result;
         }

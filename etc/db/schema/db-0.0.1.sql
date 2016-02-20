@@ -1,6 +1,7 @@
 BEGIN;
 
-create table UserConnection (userId varchar(255) not null,
+create table UserConnection (
+    userId varchar(255) not null,
     providerId varchar(255) not null,
     providerUserId varchar(255),
     rank int not null,

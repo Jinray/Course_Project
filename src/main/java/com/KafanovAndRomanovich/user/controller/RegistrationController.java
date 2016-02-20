@@ -2,9 +2,11 @@ package com.KafanovAndRomanovich.user.controller;
 
 import com.KafanovAndRomanovich.security.util.SecurityUtil;
 import com.KafanovAndRomanovich.user.dto.RegistrationForm;
+import com.KafanovAndRomanovich.user.model.Achievement;
 import com.KafanovAndRomanovich.user.model.SocialMediaService;
 import com.KafanovAndRomanovich.user.model.User;
 import com.KafanovAndRomanovich.user.repository.UserRepository;
+import com.KafanovAndRomanovich.user.service.AchievementService;
 import com.KafanovAndRomanovich.user.service.DuplicateEmailException;
 import com.KafanovAndRomanovich.user.service.UserService;
 import org.slf4j.Logger;
@@ -38,8 +40,8 @@ public class RegistrationController {
     protected static final String VIEW_NAME_REGISTRATION_PAGE = "user/registrationForm";
 
 
-
-
+    @Autowired
+    private AchievementService achievementService;
     private UserService service;
 
     @Autowired
@@ -132,9 +134,9 @@ public class RegistrationController {
     private User createUserAccount(RegistrationForm userAccountData, BindingResult result) {
         LOGGER.debug("Creating user account with information: {}", userAccountData);
         User registered = null;
-
         try {
             registered = service.registerNewUserAccount(userAccountData);
+            achievementService.addRegisteredAchievement(registered);
         }
         catch (DuplicateEmailException ex) {
             LOGGER.debug("An email address: {} exists.", userAccountData.getEmail());

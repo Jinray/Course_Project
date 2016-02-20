@@ -44,7 +44,10 @@ public class SecurityContext extends WebSecurityConfigurerAdapter {
     private RatingRepository ratingRepository;
     @Autowired
     private LikesRepository likesRepository;
-
+    @Autowired
+    private AchievementRepository achievementRepository;
+    @Bean
+    public RepositoryAchievementService repositoryAchievementService(){return new RepositoryAchievementService(achievementRepository,userRepository);}
     @Bean
     public RepositoryLikesService repositoryLikesService(){
         return new RepositoryLikesService(likesRepository);
@@ -125,9 +128,9 @@ public class SecurityContext extends WebSecurityConfigurerAdapter {
                                 "/getCloudTags",
                                 "/getPersonalRating",
                                 "/getTagsPost",
-                                "/getUserHomePagePosts"
-
-
+                                "/getUserHomePagePosts",
+                                "/getAchievements",
+                                "/getUserAchievements"
 
                         ).permitAll()
                         //The rest of the our application is protected.

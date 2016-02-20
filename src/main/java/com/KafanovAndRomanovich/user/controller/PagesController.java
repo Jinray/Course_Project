@@ -62,7 +62,7 @@ public class PagesController {
     public String showUserHomePage(@PathVariable Long userId,WebRequest webRequest, Principal principal) {
         if(principal!=null) {
             User user=userService.findUser(principal.getName());
-            if (user.getId()==userId)
+            if (user.getId().equals(userId))
                 return "index";
         }
         LOGGER.debug("Rendering UserHomePage page.");

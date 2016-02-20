@@ -2,6 +2,7 @@ package com.KafanovAndRomanovich.user.controller;
 
 
 
+import com.KafanovAndRomanovich.user.model.Achievement;
 import com.KafanovAndRomanovich.user.model.Post;
 import com.KafanovAndRomanovich.user.model.User;
 
@@ -21,6 +22,7 @@ import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 
 @RestController
@@ -67,4 +69,16 @@ public class ProfileController {
         return 200;
     }
 
+    @RequestMapping(value = "/getAchievements", method = RequestMethod.GET)
+    public List<Achievement> getAchievements(Principal principal)
+    {
+        User user=userService.findUser(principal.getName());
+        return user.getAchievements();
+    }
+
+    @RequestMapping(value = "/getUserAchievements", method = RequestMethod.POST)
+    public List<Achievement> getUserAchievements(@RequestBody Long id) {
+        User user = userService.findOne(id);
+        return user.getAchievements();
+    }
 }

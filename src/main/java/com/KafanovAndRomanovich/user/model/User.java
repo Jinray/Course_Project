@@ -1,6 +1,7 @@
 package com.KafanovAndRomanovich.user.model;
 
 import com.KafanovAndRomanovich.common.model.BaseEntity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.hibernate.annotations.Fetch;
@@ -11,9 +12,7 @@ import org.hibernate.search.annotations.Indexed;
 import javax.persistence.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 
 @Entity
@@ -58,6 +57,21 @@ public class User extends BaseEntity<Long> {
     private String skype;
     private String interests;
 
+
+    public List<Achievement> getAchievements() {
+        return achievements;
+    }
+
+    public void setAchievements(List<Achievement> achievements) {
+        this.achievements = achievements;
+    }
+
+    @OneToMany(mappedBy = "user",cascade=CascadeType.ALL,
+            fetch = FetchType.EAGER,orphanRemoval = true)
+    @Fetch(FetchMode.SELECT)
+    @JsonManagedReference
+    private List<Achievement> achievements=new ArrayList<>(0);
+
     @OneToMany(mappedBy = "user",cascade=CascadeType.ALL,
             fetch = FetchType.EAGER,orphanRemoval = true)
     @Fetch(FetchMode.SELECT)
@@ -78,6 +92,12 @@ public class User extends BaseEntity<Long> {
     @Fetch(FetchMode.SELECT)
     private List<Likes> likes;
 
+
+
+    public void addComment(Comment comment){comments.add(comment);}
+    public void addAchievement(Achievement achievement){
+        achievements.add(achievement);
+    }
     public List<Likes> getLikes() {
         return likes;
     }
@@ -116,7 +136,7 @@ public class User extends BaseEntity<Long> {
             return;
         }
         for (int i = 0; i < posts.size(); i++) {
-            if (posts.get(i).getId() == post.getId()) {
+            if (posts.get(i).getId().equals(post.getId())) {
                 posts.get(i).setCategory(post.getCategory());
                 posts.get(i).setTitle(post.getTitle());
                 posts.get(i).setImage(post.getImage());
@@ -128,7 +148,7 @@ public class User extends BaseEntity<Long> {
     }
     public void deletePost(Post post){
         for (int i = 0; i <posts.size(); i++) {
-            if (posts.get(i).getId()==post.getId()){
+            if (posts.get(i).getId().equals(post.getId())){
                 posts.remove(i);
                 break;
             }

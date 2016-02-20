@@ -6,10 +6,14 @@ import com.KafanovAndRomanovich.user.model.User;
 import com.KafanovAndRomanovich.user.repository.PostRepository;
 import com.KafanovAndRomanovich.user.repository.RatingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Created by Alex on 17.02.2016.
  */
+@Service
+@Transactional
 public class RepositoryRatingService implements RatingService {
 
     RatingRepository ratingRepository;
@@ -31,7 +35,7 @@ public class RepositoryRatingService implements RatingService {
     @Override
     public void saveOrDeleteRating(Rating rating, Post post) {
         for (Rating rait : post.getRatings()) {
-            if (rating.getUser().getId() == rait.getUser().getId()) {
+            if (rating.getUser().getId().equals(rait.getUser().getId())) {
                 if (rating.getPositive() == rait.getPositive())
                     return;
                 else {

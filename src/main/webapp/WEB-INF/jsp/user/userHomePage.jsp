@@ -29,9 +29,7 @@
                                             {{post.title}}
                                         </a>
                                         <div class="article-info">
-                                            <spring:message code="label.post.author"/>:
-                                            <%--<a href="#" class="text-primary">{{profile.lastName}}--%>
-                                                <%--{{profile.firstName}}</a>,--%>
+
                                             <spring:message code="label.post.postCategory"/>:
                                             <a href="${pageContext.request.contextPath}/user/login/category={{post.category}}"
                                                class="text-primary">{{post.category}}</a>,
@@ -81,12 +79,24 @@
                     <h5><spring:message code="label.user.education"/>: {{profile.education}}</h5>
                     <h5><spring:message code="label.user.interests"/>: {{profile.interests}}</h5>
                     <h5><spring:message code="label.user.skype"/>: {{profile.skype}}</h5>
+
+                    <div class="col-md-12 sidebar" style="margin-top: 20px;">
+                        <h4 class="sidebar-block-header nav-tabs">
+                            <spring:message code="label.user.achievements"/></h4>
+
+                        <div class="col-md-6" style="float: left; padding: 0 0 0 0; margin: 5px 0 0 0;" ng-repeat="achiva in achievements">
+                            <img data-toggle="tooltip" title="{{achiva.description}}" width="100%" ng-src="{{achiva.value}}">
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-
     </div>
 </div>
-
+<script>
+    $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>
 </body>
 </html>

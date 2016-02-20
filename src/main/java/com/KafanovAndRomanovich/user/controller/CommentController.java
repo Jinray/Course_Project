@@ -1,10 +1,7 @@
 package com.KafanovAndRomanovich.user.controller;
 
 import com.KafanovAndRomanovich.user.model.*;
-import com.KafanovAndRomanovich.user.service.CommentService;
-import com.KafanovAndRomanovich.user.service.LikesService;
-import com.KafanovAndRomanovich.user.service.PostService;
-import com.KafanovAndRomanovich.user.service.UserService;
+import com.KafanovAndRomanovich.user.service.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -35,7 +32,9 @@ public class CommentController {
     private CommentService commentService;
     @Autowired
     private LikesService likesService;
-
+    @Autowired
+    public AchievementService achievementService;
+    //todo refactor
     @RequestMapping(value = "/saveComment", method = RequestMethod.POST)
     public CommentPost saveComment(@RequestBody String comments, Principal principal) throws IOException, ParseException {
         if (principal != null) {
@@ -54,6 +53,8 @@ public class CommentController {
             comment.setDate(date);
             post.addComment(comment);
             postService.save(post);
+            user.addComment(comment);
+            achievementService.addCommentAchievement(user);
             commentPost.setUser(user);
             commentPost.setDate(date);
             return commentPost;

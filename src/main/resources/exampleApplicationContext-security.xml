@@ -62,7 +62,8 @@
         <security:intercept-url pattern="/getTagsPost" access="permitAll"/>
         <security:intercept-url pattern="/getUserHomePagePosts" access="permitAll"/>
         <security:intercept-url pattern="/getUserInfo" access="permitAll"/>
-
+        <security:intercept-url pattern="/getAchievements" access="permitAll"/>
+        <security:intercept-url pattern="/getUserAchievements" access="permitAll"/>
 
 
 

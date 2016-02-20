@@ -9,9 +9,10 @@ angular.module('myApp')
             url = $location.absUrl();
         url = url.split('\/');
         $scope.id = url[url.length - 1];
-        $scope.profile={};
+        $scope.profile = {};
         $scope.posts = [];
         $scope.postListLen = 0;
+        $scope.achievements = [];
 
         $scope.getUserHomePagePosts = function () {
             return $http({
@@ -22,10 +23,11 @@ angular.module('myApp')
                 },
                 data: $scope.id
             }).then(function successCallback(response) {
-                $scope.posts=response.data;
+                $scope.posts = response.data;
             }, function errorCallback(response) {
             });
         };
+
         $scope.getUserInfo = function () {
             return $http({
                 method: 'POST',
@@ -35,12 +37,29 @@ angular.module('myApp')
                 },
                 data: $scope.id
             }).then(function successCallback(response) {
-                $scope.profile=response.data;
+                $scope.profile = response.data;
             }, function errorCallback(response) {
             });
         };
+
+        $scope.getUserAchievements = function () {
+            return $http({
+                method: 'POST',
+                url: '/getUserAchievements',
+                headers: {
+                    'Content-Type': "application/json"
+                },
+                data: $scope.id
+            }).then(function successCallback(response) {
+                $scope.achievements = response.data;
+            }, function errorCallback(response) {
+            });
+        };
+
+        $scope.getUserAchievements();
         $scope.getUserHomePagePosts();
         $scope.getUserInfo();
+
         $scope.convertDate = function (date) {
             if (typeof date === 'undefined')
                 return "";
@@ -54,8 +73,5 @@ angular.module('myApp')
                 $scope.postListLen++;
             }
         };
-
-
-
-})
+    })
 ;

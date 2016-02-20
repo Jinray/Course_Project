@@ -16,7 +16,7 @@ angular.module('myApp')
     $scope.paste;
     $scope.showField = false;
     $scope.isDeleted = false;
-    //$scope.comments;todo add
+    $scope.achievements=[];
     $scope.showTemplate = function () {
         $scope.showField = !$scope.showField;
 
@@ -145,6 +145,7 @@ angular.module('myApp')
         }).then(function () {
             $scope.getPosts();
             $scope.showField = false;
+            $scope.getAchievements();
         });
     }
     $scope.saveImage = function () {
@@ -171,5 +172,17 @@ angular.module('myApp')
             $scope.postListLen++;
         }
     };
+
+    $scope.getAchievements = function () {
+        $http({
+            method: 'GET',
+            url: '/getAchievements'
+        }).then(function successCallback(response) {
+            $scope.achievements = response.data;
+        }, function errorCallback(response) {
+
+        });
+    };
+    $scope.getAchievements();
 
 })
