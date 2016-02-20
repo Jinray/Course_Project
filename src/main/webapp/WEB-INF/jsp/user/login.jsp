@@ -170,8 +170,11 @@
                             </h4>
                             <div ng-controller="tagsController">
                                 <div ng-repeat="tag in tagsCloud">
-                                    <a class="tag label label-primary" style="float: left; " ng-click="getTagsPosts(tag.text)" href="">{{tag.text}}</a>
+                                    <a class="tag label label-primary" style="float: left;"
+                                        ng-click="getTagsPosts(tag.text)" href=""
+                                        ng-style="tagSize={'font-size': '{{tag.weight}}em'}">{{tag.text}}</a>
                                 </div>
+
                             </div>
                         </div>
                     </div>

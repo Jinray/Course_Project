@@ -3,6 +3,7 @@ package com.KafanovAndRomanovich.user.controller;
 import com.KafanovAndRomanovich.user.model.Tag;
 import com.KafanovAndRomanovich.user.service.PostService;
 import com.KafanovAndRomanovich.user.service.TagService;
+import org.hibernate.mapping.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -45,8 +46,11 @@ public class TagController {
         List<Tag> tags=tagService.getAllResults();
         Collections.sort(tags);
         try {
-            return tags.subList(0,15);
+            tags = tags.subList(0,15);
+            Collections.shuffle(tags);
+            return tags;
         }catch (IndexOutOfBoundsException e){
+            Collections.shuffle(tags);
             return tags;
         }
     }

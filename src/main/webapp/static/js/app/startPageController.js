@@ -21,6 +21,7 @@ angular.module('myApp')
 
         });
     };
+
     $scope.getPopularPosts = function () {
         $http({
             method: 'GET',
@@ -31,6 +32,7 @@ angular.module('myApp')
 
         });
     };
+
     $scope.getPopularPosts();
     $scope.convertDate = function (date) {
         if (typeof date === 'undefined')
@@ -39,11 +41,13 @@ angular.module('myApp')
         var tempDate = _date.toString().split(" ");
         return tempDate[1] + " " + tempDate[2] + " " + tempDate[3];
     };
+
     $scope.extendList = function () {
         for (var i = 0; i < 2 && $scope.articles.length > $scope.postListLen; i++) {
             $scope.postListLen++;
         }
     };
+
     $scope.getCategoryPosts = function (category) {
 
         $http({
@@ -58,6 +62,7 @@ angular.module('myApp')
         }, function errorCallback(response) {
         });
     };
+
     $scope.getTagsPosts = function (tags) {
 
         $http({
@@ -72,6 +77,9 @@ angular.module('myApp')
         }, function errorCallback(response) {
         });
     };
+
+
+
     var url=$location.absUrl().substring(0,$location.absUrl().indexOf('?'));
     if(url==="")
         url=$location.absUrl();

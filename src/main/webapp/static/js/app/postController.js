@@ -70,9 +70,9 @@ angular.module('myApp')
         })
     };
 
-    $scope.deletePost = function () {
+    $scope.deletePost = function (index) {
         $scope.isDeleted = true;
-        var post = $scope.posts[$scope.currentIndex];
+        var post = $scope.posts[index];
         $http({
             method: 'POST',
             url: '/deletepost',
