@@ -3,7 +3,7 @@
  */
 (function () {
     'use strict';
-    angular.module('myApp', ['ngTagsInput', 'infinite-scroll', 'ngRoute', 'ngResource'])
+    angular.module('myApp', ['ngTagsInput', 'infinite-scroll', 'ngRoute', 'ngResource', 'ngSanitize'])
         .directive('fileDropzone', function () {
             return {
                 restrict: 'A',

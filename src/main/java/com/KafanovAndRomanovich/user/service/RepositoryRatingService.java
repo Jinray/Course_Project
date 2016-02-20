@@ -33,14 +33,13 @@ public class RepositoryRatingService implements RatingService {
     }
 
     @Override
-    public void saveOrDeleteRating(Rating rating, Post post) {
+    public void saveOrDeleteRating(Rating rating, Post post,User user) {
         for (Rating rait : post.getRatings()) {
             if (rating.getUser().getId().equals(rait.getUser().getId())) {
                 if (rating.getPositive() == rait.getPositive())
                     return;
                 else {
                     post.removeRating(rait);
-                    ratingRepository.delete(rait);
                     return;
                 }
             }

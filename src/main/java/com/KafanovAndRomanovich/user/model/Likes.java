@@ -1,5 +1,6 @@
 package com.KafanovAndRomanovich.user.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -21,7 +22,7 @@ public class Likes {
 
     @ManyToOne
     @JoinColumn(name = "comment_id",nullable = false)
-    @JsonIgnore
+    @JsonBackReference
     private Comment comment;
 
     public Long getId() {

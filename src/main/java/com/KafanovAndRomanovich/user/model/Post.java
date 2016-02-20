@@ -37,15 +37,22 @@ public class Post {
     private String category;
     private String image;
 
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "post",cascade=CascadeType.ALL)
+    @OneToMany(mappedBy = "post",cascade=CascadeType.ALL,
+            fetch = FetchType.EAGER,orphanRemoval = true)
     @Fetch(FetchMode.SELECT)
+    @JsonManagedReference
     private List<Rating> ratings;
 
     public List<Rating> getRatings() {
         return ratings;
     }
     public void addRating(Rating rating){ratings.add(rating);}
-    public void removeRating(Rating rating){ratings.remove(rating);}
+    public void removeRating(Rating rating){for (int i = 0; i < ratings.size(); i++) {
+        if (ratings.get(i).getId().equals(rating.getId())) {
+            ratings.remove(i);
+            break;
+        }
+    }}
     public void setRatings(List<Rating> ratings) {
         this.ratings = ratings;
     }

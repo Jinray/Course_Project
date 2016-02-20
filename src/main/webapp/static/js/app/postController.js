@@ -2,25 +2,50 @@
  * Created by Alex on 18.02.2016.
  */
 angular.module('myApp')
-.controller('postController', function ($scope, $http) {
-    $scope.isUploading = false;
-    $scope.isPictureExist=false;
-    $scope.posts = [];
-    $scope.currentIndex;
-    $scope.title;
-    $scope.text;
-    $scope.tags = [];
-    $scope.postListLen = 0;
-    var e = document.getElementById("category");
-    $scope.category = e.options[e.selectedIndex].value;
-    $scope.paste;
-    $scope.showField = false;
-    $scope.isDeleted = false;
-    $scope.achievements=[];
-    $scope.showTemplate = function () {
-        $scope.showField = !$scope.showField;
+    .controller('TrustController', function($scope, $sce) {
+        $scope.trustSrc = function(src) {
+            return $sce.trustAsResourceUrl(src);
+        };
+    })
+    .controller('postController', function ($scope, $http) {
+        $scope.isUploading = false;
+        $scope.isPictureExist = false;
+        $scope.posts = [];
+        $scope.currentIndex;
+        $scope.title;
+        $scope.text;
+        $scope.tags = [];
+        $scope.postListLen = 0;
+        var e = document.getElementById("category");
+        $scope.category = e.options[e.selectedIndex].value;
+        $scope.paste;
+        $scope.isDeleted = false;
 
-    };
+        $scope.showField = false;
+        $scope.templateType = 0;
+        $scope.readyYouTube = "";
+
+        $scope.setTemplate = function (value) {
+            if (value >= 0 || value <= 2) {
+                $scope.templateType = value;
+            }
+            else {
+                $scope.showField = false;
+            }
+        };
+
+        $scope.handleYouTube = function (video) {
+            $scope.readyYouTube = video.replace('watch?v=', 'embed/');
+            $scope.readyYouTube.replace('&index=18&', '?');
+            $scope.readyYouTube.replace('&', '?');
+            return $scope.readyYouTube;
+        };
+
+        $scope.showTemplate = function () {
+            $scope.showField = !$scope.showField;
+            $scope.templateType = 0;
+        };
+
     $scope.getPosts = function () {
         $http({
             method: 'GET',

@@ -9,6 +9,6 @@ import com.KafanovAndRomanovich.user.model.User;
  */
 public interface RatingService {
     Integer getScore(Post post);
-    void saveOrDeleteRating(Rating rating, Post post);
+    void saveOrDeleteRating(Rating rating, Post post,User user);
     Rating findByUserAndPost(User user,Post post);
 }

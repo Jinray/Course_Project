@@ -10,7 +10,7 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/social-buttons-3.css"/>
     <%--<link type="text/css" data-themecolor="default" rel='stylesheet'--%>
-          <%--href="${pageContext.request.contextPath}/static/css/main-default.css">--%>
+    <%--href="${pageContext.request.contextPath}/static/css/main-default.css">--%>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/app/color-themes.js"></script>
     <script type="text/javascript"
@@ -39,26 +39,31 @@
                                 </div>
                                 <div class="article">
                                     <div class="article-body">
-                                        <a href="${pageContext.request.contextPath}/user/singlePost/{{post.id}}"
-                                           class="article-title article-title-1 article-title-font">
-                                            {{post.title}}
-                                        </a>
+                                        <div class="article-title article-title-1 article-title-font">
+                                            <a style="display: inline-block;" href="${pageContext.request.contextPath}/user/singlePost/{{post.id}}">
+                                                {{post.title}}
+                                            </a>
+                                            <span style="float: right;"><spring:message code="label.post.rating"/> {{post.rating}}</span>
+                                        </div>
                                         <div class="article-info">
                                             <spring:message code="label.post.author"/>:
-                                            <a href="${pageContext.request.contextPath}/user/userHomePage/{{post.userId}}" class="text-primary">{{post.lastName}}
+                                            <a href="${pageContext.request.contextPath}/user/userHomePage/{{post.userId}}"
+                                               class="text-primary">{{post.lastName}}
                                                 {{post.firstName}}</a>,
                                             <spring:message code="label.post.postCategory"/>:
                                             <a href="#" ng-click="getCategoryPosts(post.category)" class="text-primary">{{post.category}}</a>,
                                             <spring:message code="label.post.PostDate"/>: {{convertDate(post.date)}}
                                             <div style="float: right;">
                                                 <a href="${pageContext.request.contextPath}/user/singlePost/{{post.id}}"
-                                                    class="text-primary">
-                                                <i class="icon-comment"></i> {{post.comments.length}} <spring:message
-                                                    code="label.post.comments"/></a></div>
+                                                   class="text-primary">
+                                                    <i class="icon-comment"></i> {{post.comments.length}}
+                                                    <spring:message
+                                                            code="label.post.comments"/></a></div>
                                         </div>
 
                                         <div>
-                                            <a ng-repeat="tag in post.tags" href="#" class="tag label label-primary" style="margin-right: 4px;">
+                                            <a ng-repeat="tag in post.tags" href="#" class="tag label label-primary"
+                                               style="margin-right: 4px;">
                                                 {{post.tags[$index].text}}
                                             </a>
                                         </div>
@@ -150,7 +155,8 @@
                             <div class="popular-container row">
                                 <div ng-repeat="pop in popArticles" class="populars nav-tabs col-md-12  col-xs-12">
                                     <div class="col-md-3" style="padding: 0 0 0 0;">
-                                        <a href="${pageContext.request.contextPath}/user/singlePost/{{pop.id}}"><img width="100%" ng-src="{{pop.image}}" alt=""/></a>
+                                        <a href="${pageContext.request.contextPath}/user/singlePost/{{pop.id}}"><img
+                                                width="100%" ng-src="{{pop.image}}" alt=""/></a>
                                     </div>
                                     <div class="col-md-9">
                                         <div style="font-size: 0.92308em; line-height: 2;">
@@ -171,8 +177,8 @@
                             <div ng-controller="tagsController">
                                 <div ng-repeat="tag in tagsCloud">
                                     <a class="tag label label-primary" style="float: left;"
-                                        ng-click="getTagsPosts(tag.text)" href=""
-                                        ng-style="tagSize={'font-size': '{{tag.weight}}em'}">{{tag.text}}</a>
+                                       ng-click="getTagsPosts(tag.text)" href=""
+                                       ng-style="tagSize={font-size': '{{tag.weight}}em'}">{{tag.text}}</a>
                                 </div>
 
                             </div>

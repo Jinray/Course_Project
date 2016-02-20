@@ -2,6 +2,7 @@ package com.KafanovAndRomanovich.user.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.hibernate.search.annotations.Field;
@@ -26,9 +27,12 @@ public class Comment {
     private Date date;
 
 
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "comment",cascade=CascadeType.ALL)
+    @OneToMany(mappedBy = "comment",cascade=CascadeType.ALL,
+            fetch = FetchType.EAGER,orphanRemoval = true)
     @Fetch(FetchMode.SELECT)
+    @JsonManagedReference
     private List<Likes> likes;
+
     public void removeLike(Likes like){likes.remove(like);}
     public List<Likes> getLikes() {
         return likes;

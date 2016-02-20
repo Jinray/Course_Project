@@ -87,6 +87,7 @@ public class CommentController {
             like.setComment(comment);
             like.setUser(userService.findUser(principal.getName()));
             likesService.saveOrDeleteLikes(like, comment);
+            commentService.save(comment);
         }
         return comment.getLikes();
 

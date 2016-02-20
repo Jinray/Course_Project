@@ -84,7 +84,8 @@ public class User extends BaseEntity<Long> {
     private List<Comment> comments;
 
 
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "user")
+    @OneToMany(mappedBy = "user",
+            fetch = FetchType.EAGER)
     @Fetch(FetchMode.SELECT)
     private List<Rating> ratings;
 
@@ -107,7 +108,14 @@ public class User extends BaseEntity<Long> {
     }
 
     public void addRating(Rating rating){ratings.add(rating);}
-    public void removeRating(Rating rating){ratings.remove(rating);}
+    public void removeRating(Rating rating) {
+        for (int i = 0; i < ratings.size(); i++) {
+            if (ratings.get(i).getId().equals(rating.getId())) {
+                ratings.remove(i);
+                break;
+            }
+        }
+    }
     public List<Rating> getRatings() {
         return ratings;
     }

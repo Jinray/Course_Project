@@ -7,7 +7,6 @@
 <head>
     <title><spring:message code="spring.social.mvc.normal.title"/></title>
     <link rel="stylesheet" type="text/css" href="/<spring:theme code='styleSheet'/>"/>
-    <%--<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/main-default.css"/>--%>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/font-awesome.css"/>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/style.css"/>
     <link rel="stylesheet" type="text/css"
@@ -16,8 +15,8 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/vendor/jquery-2.0.3.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/app/angular-route.min.js"></script>
-    <script type="text/javascript"
-            src="${pageContext.request.contextPath}/static/js/app/angular-resource.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/app/angular-resource.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/app/angular-sanitize.js"></script>
 
     <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/vendor/bootstrap.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/static/ckeditor/ckeditor.js"></script>
@@ -33,7 +32,7 @@
     <sitemesh:write property="head"/>
 
 </head>
-<body >
+<body>
 
 <div class="page">
     <div class="navbar navbar-default" role="navigation">
@@ -44,7 +43,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <span class="navbar-brand"><a style="color: white;" href="${pageContext.request.contextPath}/login">iLearning</a></span>
+            <span ><a class="navbar-brand"  href="${pageContext.request.contextPath}/login">iLearning</a></span>
         </div>
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav">
@@ -64,8 +63,12 @@
                         <spring:message code="label.navigation.common.language"/>
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a href="?lang=en"><img width="30px" src="${pageContext.request.contextPath}/static/images/US.png">English</a></li>
-                        <li><a href="?lang=ru"><img width="30px" src="${pageContext.request.contextPath}/static/images/ru.png">Русский</a></li>
+                        <li><a href="?lang=en"><img width="30px"
+                                                    src="${pageContext.request.contextPath}/static/images/US.png">English</a>
+                        </li>
+                        <li><a href="?lang=ru"><img width="30px"
+                                                    src="${pageContext.request.contextPath}/static/images/ru.png">Русский</a>
+                        </li>
                     </ul>
                 </li>
             </ul>
@@ -78,6 +81,9 @@
                             code="label.navigation.signIn.link"/></a></li>
                     <li><a href="${pageContext.request.contextPath}/user/register"><spring:message
                             code="label.navigation.registration.link"/></a></li>
+                </sec:authorize>
+                <sec:authorize access="hasRole('ROLE_ADMIN')">
+                    <li><a href="">ADMIN</a></li>
                 </sec:authorize>
 
                 <sec:authorize access="isAuthenticated()">

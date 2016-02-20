@@ -27,14 +27,14 @@ public class Rating {
     }
 
     @ManyToOne
-    @JoinColumn(name = "user_id",nullable = false)
+    @JoinColumn(name = "user_id")
     @JsonIgnore
     private User user;
 
 
     @ManyToOne
-    @JoinColumn(name = "post_id",nullable = false)
-    @JsonIgnore
+    @JoinColumn(name = "post_id")
+    @JsonBackReference
     private Post post;
 
     public Long getId() {

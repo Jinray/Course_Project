@@ -27,16 +27,29 @@
             <div class="col-md-9" style="margin: 0 12.5% 0 12.5%">
                 <div class="row">
                     <div class="col-md-9 col-md-push-3">
-                        <div class="navbar navbar-default" style="margin-bottom: 15px;;">
+                        <div class="navbar navbar-default" style="margin-bottom: 15px;">
                             <div class="collapse navbar-collapse navbar-ex1-collapse">
                                 <ul class="nav navbar-nav">
                                     <li>
-                                        <a href="#" ng-click="showTemplate()" aria-expanded="false">
+                                        <a href="javascript:void(0)" ng-click="showTemplate()" aria-expanded="false">
                                             <spring:message code="label.user.templates"/></a>
                                     </li>
                                     <li>
                                         <a href="${pageContext.request.contextPath}/user/templates">
                                             <spring:message code="label.user.edit.posts"/></a>
+                                    </li>
+                                </ul>
+                                <ul class="nav navbar-nav navbar-right" ng-show="showField">
+                                    <li class="dropdown">
+                                        <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown"
+                                           role="button" aria-expanded="false">Templates<span class="caret"></span></a>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li><a href="javascript:void(0)" ng-click="setTemplate(0)">Simple</a></li>
+                                            <li><a href="javascript:void(0)" ng-click="setTemplate(1)">With image</a>
+                                            </li>
+                                            <li><a href="javascript:void(0)" ng-click="setTemplate(2)">With video</a>
+                                            </li>
+                                        </ul>
                                     </li>
                                 </ul>
                             </div>
@@ -45,7 +58,7 @@
                             <div class="panel panel-primary" style="border: 1px solid #bbb">
                                 <form class="form-horizontal" name="newArticle">
                                     <fieldset style="padding: 0 3% 0 3%">
-                                        <div class="form-group">
+                                        <div class="form-group" ng-show="templateType == 1">
                                             <h4><spring:message code="label.post.upload"/></h4>
                                             <div class="dropzone" file-dropzone="[image/png, image/jpeg, image/gif]"
                                                  file="postImage" file-name="imageFileName" data-max-file-size="3">
@@ -54,7 +67,17 @@
                                             <div class="postImageContainer">
                                                 <img ng-src="{{postImage}}"/>
                                             </div>
+                                        </div>
 
+                                        <div class="form-group" ng-show="templateType == 2" ng-controller="TrustController">
+                                            <h4>YouTube video URL:</h4>
+                                            <input maxlength="150" class="form-control" ng-model="video" required>
+                                            <div class="embed-responsive embed-responsive-16by9"
+                                                 style="margin: 15px 0 0 0 ">
+                                                <iframe class="embed-responsive-item"
+                                                        ng-src="{{trustSrc(handleYouTube(video))}}"
+                                                        frameborder="0" allowfullscreen></iframe>
+                                            </div>
                                         </div>
 
                                         <div class="form-group">
@@ -116,8 +139,10 @@
                                         </div>
                                         <div class="form-group">
                                             <button style="margin:5px 0 5px 0"
-                                                    class="btn btn-primary btn-block" type="submit" ng-disabled="newArticle.$invalid"
-                                                    ng-click="newPost();"><spring:message code="label.post.publish"/></button>
+                                                    class="btn btn-primary btn-block" type="submit"
+                                                    ng-disabled="newArticle.$invalid"
+                                                    ng-click="newPost();"><spring:message
+                                                    code="label.post.publish"/></button>
                                         </div>
                                     </fieldset>
                                 </form>
@@ -194,8 +219,10 @@
                             <h4 class="sidebar-block-header nav-tabs">
                                 <spring:message code="label.user.achievements"/></h4>
 
-                            <div class="col-md-6" style="float: left; padding: 0 0 0 0; margin: 5px 0 0 0;" ng-repeat="achiva in achievements">
-                                <img data-toggle="tooltip" title="{{achiva.description}}" width="100%" ng-src="{{achiva.value}}">
+                            <div class="col-md-6" style="float: left; padding: 0 0 0 0; margin: 5px 0 0 0;"
+                                 ng-repeat="achiva in achievements">
+                                <img data-toggle="tooltip" title="{{achiva.description}}" width="100%"
+                                     ng-src="{{achiva.value}}">
                             </div>
                         </div>
                     </div>
@@ -205,7 +232,7 @@
     </div>
 </div>
 <script>
-    $(document).ready(function(){
+    $(document).ready(function () {
         $('[data-toggle="tooltip"]').tooltip();
     });
 </script>

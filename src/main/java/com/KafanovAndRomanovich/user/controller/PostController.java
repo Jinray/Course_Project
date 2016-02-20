@@ -39,7 +39,8 @@ public class PostController {
     @Autowired
     private RatingService ratingService;
     @Autowired
-    AchievementService achievementService;
+    private AchievementService achievementService;
+
 
     private Cloudinary cloud;
 
@@ -179,7 +180,8 @@ public class PostController {
             rating.setUser(user);
             rating.setPost(post);
             rating.setPositive(postRating.isPositive());
-            ratingService.saveOrDeleteRating(rating, post);
+            ratingService.saveOrDeleteRating(rating, post,user);
+            postService.save(post);
             achievementService.addRatingAchievement(user);
             int result = ratingService.getScore(post);
             return result;

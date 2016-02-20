@@ -25,7 +25,8 @@ public class RepositoryLikesService implements LikesService {
     public void saveOrDeleteLikes(Likes likes, Comment comment) {
         for (Likes like :comment.getLikes()) {
             if (like.getUser().getId().equals(likes.getUser().getId())) {
-                likesRepository.delete(like);
+                comment.removeLike(like);
+                //likesRepository.delete(like);
                 comment.removeLike(like);
                 return;
             }
