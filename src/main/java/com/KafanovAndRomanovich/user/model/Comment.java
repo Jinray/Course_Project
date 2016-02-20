@@ -26,7 +26,7 @@ public class Comment {
     private Date date;
 
 
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "comment")
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "comment",cascade=CascadeType.ALL)
     @Fetch(FetchMode.SELECT)
     private List<Likes> likes;
     public void removeLike(Likes like){likes.remove(like);}

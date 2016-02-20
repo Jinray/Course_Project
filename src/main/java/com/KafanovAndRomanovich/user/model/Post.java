@@ -37,7 +37,7 @@ public class Post {
     private String category;
     private String image;
 
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "post")
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "post",cascade=CascadeType.ALL)
     @Fetch(FetchMode.SELECT)
     private List<Rating> ratings;
 

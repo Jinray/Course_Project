@@ -43,7 +43,7 @@
                         </div>
                         <div ng-show="showField">
                             <div class="panel panel-primary" style="border: 1px solid #bbb">
-                                <form class="form-horizontal">
+                                <form class="form-horizontal" name="newArticle">
                                     <fieldset style="padding: 0 3% 0 3%">
                                         <div class="form-group">
                                             <h4><spring:message code="label.post.upload"/></h4>
@@ -116,9 +116,8 @@
                                         </div>
                                         <div class="form-group">
                                             <button style="margin:5px 0 5px 0"
-                                                    class="btn btn-primary btn-block" type="submit"
-                                                    ng-click="newPost();"><spring:message
-                                                    code="label.post.publish"/></button>
+                                                    class="btn btn-primary btn-block" type="submit" ng-disabled="newArticle.$invalid"
+                                                    ng-click="newPost();"><spring:message code="label.post.publish"/></button>
                                         </div>
                                     </fieldset>
                                 </form>

@@ -87,6 +87,7 @@ angular.module('myApp')
 
     //setting code from file
     $scope.setPost = function (index) {
+        //$scope.isUploading = false;
         if ($scope.currentIndex != undefined && !$scope.isDeleted)
             $scope.isDeleted = false;
         $scope.title = $scope.posts[index].title;
@@ -99,7 +100,7 @@ angular.module('myApp')
         else{
             $scope.isPictureExist = false;
         }
-        CKEDITOR.instances.editor1.setData($scope.text, function () {
+            CKEDITOR.instances.editor1.setData($scope.text, function () {
             this.checkDirty();  // true
         });
         $scope.category = $scope.posts[$scope.currentIndex].category;
