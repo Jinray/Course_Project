@@ -79,7 +79,6 @@
         .controller('TestCtrl', function ($scope) {
             $scope.image = null;
             $scope.imageFileName = ''
-
         });
 
 }).call(this);

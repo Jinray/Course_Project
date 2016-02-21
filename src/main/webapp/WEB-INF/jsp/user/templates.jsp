@@ -29,7 +29,7 @@
                              file="postImage" file-name="imageFileName" data-max-file-size="3">
                             <h4><spring:message code="label.post.dropzone"/></h4>
                         </div>
-                        <div ng-show="isPictureExist" class="postImageContainer">
+                        <div  class="postImageContainer">
                             <img ng-src="{{postImage}}"/>
                         </div>
                     </div>

@@ -24,6 +24,13 @@ angular.module('myApp')
         $scope.templateType = 0;
         $scope.readyYouTube = "";
 
+        $scope.handleDrop = function () {
+            console.log($scope.postImage);
+            if (typeof $scope.postImage !== 'undefined') {
+                $scope.isPictureExist = true;
+            }
+
+        };
 
         $scope.setTemplate = function (value) {
             if (value >= 0 || value <= 1) {
@@ -36,12 +43,14 @@ angular.module('myApp')
 
         $scope.handleYouTube = function (video) {
             if (typeof video !== 'undefined') {
-                $scope.readyYouTube = video.replace('watch?v=', 'embed/');
+                $scope.readyYouTube = video.replace('https://www.youtube.com/watch?v=','');
+                $scope.readyYouTube = $scope.readyYouTube.replace('https://www.youtube.com/embed/','');
                 $scope.readyYouTube.replace('&index=18&', '?');
                 $scope.readyYouTube.replace('&', '?');
+                $scope.readyYouTube = "https://www.youtube.com/embed/" + $scope.readyYouTube;
                 return $scope.readyYouTube;
             }
-            return " ";
+            return "";
 
         };
 
@@ -102,12 +111,12 @@ angular.module('myApp')
 
                 })
             }else{
-                if (typeof $scope.video !== 'undefined') {
+                if (typeof $scope.video === 'undefined' || $scope.video === "") {
                     alert("Please insert video URL");
                     $scope.isUploading = false;
                     return;
                 }
-                post.image = $scope.video;
+                post.image = $scope.handleYouTube($scope.video);
                 $http({
                     method: 'POST',
                     url: '/savepost',
@@ -138,6 +147,7 @@ angular.module('myApp')
 
         //setting code from file
         $scope.setPost = function (index) {
+            $scope.postImage=" ";
             //$scope.isUploading = false;
             if ($scope.currentIndex != undefined && !$scope.isDeleted) {
                 $scope.isDeleted = false;
@@ -151,10 +161,6 @@ angular.module('myApp')
                 $scope.isPictureExist = true;
                 if ($scope.currentTemplate == 1) {
                     $scope.video = $scope.posts[$scope.currentIndex].image;
-                    if ($scope.posts[$scope.currentIndex].image === "") {
-                        $scope.isPictureExist = false;
-
-                    }
                 }
             }
             else {
