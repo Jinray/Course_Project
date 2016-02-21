@@ -19,7 +19,7 @@ angular.module('myApp')
         $scope.showField = false;
         $scope.isDeleted = false;
         $scope.achievements = [];
-
+        $scope.video;
         $scope.showField = false;
         $scope.templateType = 0;
         $scope.readyYouTube = "";
@@ -81,14 +81,34 @@ angular.module('myApp')
             }
             if ($scope.title != "" && isUnique)
                 post.title = $scope.title;
-            $scope.saveImage()
-                .then(function (response) {
-                    post.image = response.data.data;
+            if($scope.currentTemplate==0) {
+                $scope.saveImage()
+                    .then(function (response) {
+                        post.image = response.data.data;
+                    }).then(function () {
+                }, function () {
+                    console.log("empty image")
                 }).then(function () {
-            }, function () {
-                console.log("empty image")
-            }).then(function () {
-                return $http({
+                    return $http({
+                        method: 'POST',
+                        url: '/savepost',
+                        headers: {'Content-Type': undefined},
+                        data: post
+                    }).then(function successCallback(response) {
+                        $scope.isUploading = false;
+                    }, function errorCallback(response) {
+                        $scope.isUploading = false;
+                    });
+
+                })
+            }else{
+                if (typeof $scope.video !== 'undefined') {
+                    alert("Please insert video URL");
+                    $scope.isUploading = false;
+                    return;
+                }
+                post.image = $scope.video;
+                $http({
                     method: 'POST',
                     url: '/savepost',
                     headers: {'Content-Type': undefined},
@@ -98,8 +118,7 @@ angular.module('myApp')
                 }, function errorCallback(response) {
                     $scope.isUploading = false;
                 });
-
-            })
+            }
         };
 
         $scope.deletePost = function (index) {
@@ -120,15 +139,23 @@ angular.module('myApp')
         //setting code from file
         $scope.setPost = function (index) {
             //$scope.isUploading = false;
-            if ($scope.currentIndex != undefined && !$scope.isDeleted)
+            if ($scope.currentIndex != undefined && !$scope.isDeleted) {
                 $scope.isDeleted = false;
+            }
             $scope.title = $scope.posts[index].title;
             $scope.currentIndex = index;
-            $scope.currentTemplate = $scope.post[index].template;
+            $scope.currentTemplate = $scope.posts[index].template;
             $scope.text = $scope.posts[$scope.currentIndex].text;
             if ($scope.posts[$scope.currentIndex].image !== null) {
                 $scope.postImage = $scope.posts[$scope.currentIndex].image;
                 $scope.isPictureExist = true;
+                if ($scope.currentTemplate == 1) {
+                    $scope.video = $scope.posts[$scope.currentIndex].image;
+                    if ($scope.posts[$scope.currentIndex].image === "") {
+                        $scope.isPictureExist = false;
+
+                    }
+                }
             }
             else {
                 $scope.isPictureExist = false;
@@ -156,7 +183,6 @@ angular.module('myApp')
             }
             $scope.post = {};
             $scope.post.template = $scope.templateType;
-            alert($scope.post.template);
             $scope.post.text = CKEDITOR.instances.editor1.getData();
             if ($scope.post.text.length > 30000) {
                 alert("Too mush text")
@@ -244,4 +270,4 @@ angular.module('myApp')
         };
         $scope.getAchievements();
 
-    })
+    });
