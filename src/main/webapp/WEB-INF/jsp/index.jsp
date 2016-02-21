@@ -17,6 +17,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/app/profileController.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/app/postController.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/app/tagCloudController.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/app/TrustController.js"></script>
 
 <div class="mask-l"
      style="background-color: #fff; width: 100%; height: 100%; position: fixed; top: 0; left:0; z-index: 100;"></div>
@@ -42,12 +43,11 @@
                                 <ul class="nav navbar-nav navbar-right" ng-show="showField">
                                     <li class="dropdown">
                                         <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown"
-                                           role="button" aria-expanded="false">Templates<span class="caret"></span></a>
+                                           role="button" aria-expanded="false"><spring:message code="label.user.template.type"/><span class="caret"></span></a>
                                         <ul class="dropdown-menu" role="menu">
-                                            <li><a href="javascript:void(0)" ng-click="setTemplate(0)">Simple</a></li>
-                                            <li><a href="javascript:void(0)" ng-click="setTemplate(1)">With image</a>
+                                            <li><a href="javascript:void(0)" ng-click="setTemplate(0)"><spring:message code="label.user.template.image"/></a>
                                             </li>
-                                            <li><a href="javascript:void(0)" ng-click="setTemplate(2)">With video</a>
+                                            <li><a href="javascript:void(0)" ng-click="setTemplate(1)"><spring:message code="label.user.template.video"/></a>
                                             </li>
                                         </ul>
                                     </li>
@@ -58,27 +58,27 @@
                             <div class="panel panel-primary" style="border: 1px solid #bbb">
                                 <form class="form-horizontal" name="newArticle">
                                     <fieldset style="padding: 0 3% 0 3%">
-                                        <div class="form-group" ng-show="templateType == 1">
+                                        <div class="form-group" ng-show="templateType == 0">
                                             <h4><spring:message code="label.post.upload"/></h4>
                                             <div class="dropzone" file-dropzone="[image/png, image/jpeg, image/gif]"
                                                  file="postImage" file-name="imageFileName" data-max-file-size="3">
-                                                <h4>Drop Image Here</h4>
+                                                <h4><spring:message code="label.post.dropzone"/></h4>
                                             </div>
                                             <div class="postImageContainer">
                                                 <img ng-src="{{postImage}}"/>
                                             </div>
                                         </div>
 
-                                        <%--<div class="form-group" ng-show="templateType == 2" ng-controller="TrustController">--%>
-                                            <%--<h4>YouTube video URL:</h4>--%>
-                                            <%--<input maxlength="150" class="form-control" ng-model="video" required>--%>
-                                            <%--<div class="embed-responsive embed-responsive-16by9"--%>
-                                                 <%--style="margin: 15px 0 0 0 ">--%>
-                                                <%--<iframe class="embed-responsive-item"--%>
-                                                        <%--ng-src="{{trustSrc(handleYouTube(video))}}"--%>
-                                                        <%--frameborder="0" allowfullscreen></iframe>--%>
-                                            <%--</div>--%>
-                                        <%--</div>--%>
+                                        <div class="form-group" ng-show="templateType == 1" ng-controller="TrustController">
+                                            <h4><spring:message code="label.post.youtube"/></h4>
+                                            <input maxlength="150" class="form-control" ng-model="video">
+                                            <div class="embed-responsive embed-responsive-16by9"
+                                                 style="margin: 15px 0 0 0 ">
+                                                <iframe class="embed-responsive-item"
+                                                        ng-src="{{trustSrc(handleYouTube(video))}}"
+                                                        frameborder="0" allowfullscreen></iframe>
+                                            </div>
+                                        </div>
 
                                         <div class="form-group">
                                             <h4><spring:message code="label.post.title"/></h4>
@@ -151,9 +151,18 @@
                         <div infinite-scroll='extendList()' infinite-scroll-disabled='busy'>
                             <div ng-repeat="post in posts" ng-hide="$index > postListLen+2">
                                 <div class="panel panel-default">
-                                    <div class="article-header">
+
+                                    <div class="article-header" ng-show="post.template == 0">
                                         <img ng-src="{{post.image}}" alt="">
                                     </div>
+
+                                    <div class="embed-responsive embed-responsive-16by9" style="margin: 15px 0 15px 0"
+                                        ng-show="post.template == 1" ng-controller="TrustController">
+                                        <iframe class="embed-responsive-item"
+                                                ng-src="{{trustSrc(post.image)}}"
+                                                frameborder="0" allowfullscreen></iframe>
+                                    </div>
+
                                     <div class="article">
                                         <div class="article-body">
                                             <a href="${pageContext.request.contextPath}/user/singlePost/{{post.id}}"

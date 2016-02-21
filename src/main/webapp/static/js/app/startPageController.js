@@ -2,14 +2,12 @@
  * Created by Alex on 18.02.2016.
  */
 angular.module('myApp')
-.controller('startPageController', function($scope, $http,$location) {
+.controller('startPageController', function($scope, $http, $location) {
 
     $scope.articles = [];
     $scope.popArticles=[];
     $scope.postListLen = 0;
     $scope.search="";
-
-
 
     $scope.getAllPosts = function () {
         $http({

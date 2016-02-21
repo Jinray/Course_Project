@@ -46,7 +46,6 @@ angular.module('myApp')
             data: $scope.id
         }).then(function successCallback(response) {
             $scope.comments=response.data;
-            console.log(response.data)
         }, function errorCallback(response) {
         });
 

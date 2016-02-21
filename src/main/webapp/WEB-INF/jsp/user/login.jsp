@@ -24,6 +24,8 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/app/postDirective.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/app/startPageController.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/app/tagCloudController.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/app/TrustController.js"></script>
+
 
 <!--removed by integration-->
 <div ng-app="myApp">
@@ -34,9 +36,18 @@
                     <div infinite-scroll='extendList()' infinite-scroll-disabled='busy'>
                         <div ng-repeat="post in articles" ng-hide="$index > postListLen+3">
                             <div class="panel panel-default">
-                                <div class="article-header">
+
+                                <div class="article-header" ng-show="post.template == 0">
                                     <img ng-src="{{post.image}}" alt="">
                                 </div>
+
+                                <div class="embed-responsive embed-responsive-16by9" style="margin: 15px 0 15px 0"
+                                     ng-show="post.template == 1" ng-controller="TrustController">
+                                    <iframe class="embed-responsive-item"
+                                            ng-src="{{trustSrc(post.image)}}"
+                                            frameborder="0" allowfullscreen></iframe>
+                                </div>
+
                                 <div class="article">
                                     <div class="article-body">
                                         <div class="article-title article-title-1 article-title-font">
@@ -155,8 +166,18 @@
                             <div class="popular-container row">
                                 <div ng-repeat="pop in popArticles" class="populars nav-tabs col-md-12  col-xs-12">
                                     <div class="col-md-3" style="padding: 0 0 0 0;">
-                                        <a href="${pageContext.request.contextPath}/user/singlePost/{{pop.id}}"><img
-                                                width="100%" ng-src="{{pop.image}}" alt=""/></a>
+                                        <a ng-show="pop.template == 0" href="${pageContext.request.contextPath}/user/singlePost/{{pop.id}}">
+                                            <img width="100%" ng-src="{{pop.image}}" alt=""/>
+                                        </a>
+
+                                        <a href="${pageContext.request.contextPath}/user/singlePost/{{pop.id}}">
+                                            <div class="embed-responsive embed-responsive-16by9"
+                                                 ng-show="pop.template == 1" ng-controller="TrustController">
+                                                <iframe class="embed-responsive-item"
+                                                        ng-src="{{trustSrc(pop.image)}}"
+                                                        frameborder="0" allowfullscreen></iframe>
+                                            </div>
+                                        </a>
                                     </div>
                                     <div class="col-md-9">
                                         <div style="font-size: 0.92308em; line-height: 2;">

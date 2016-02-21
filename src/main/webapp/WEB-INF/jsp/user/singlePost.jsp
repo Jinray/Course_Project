@@ -9,14 +9,25 @@
 <body>
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/app/commentDirective.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/app/singlePostController.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/app/TrustController.js"></script>
+
 
 <div ng-app="myApp" ng-controller="singlePostController" class=" col-md-8"
      style="margin: 0 16.5% 40px 16.5%; border: 1px solid #fff;">
     <div class="page-container col-md-12">
         <div class="panel panel-default">
-            <div class="article-header">
+
+            <div class="article-header" ng-show="post.template == 0">
                 <img ng-src="{{post.image}}" alt="">
             </div>
+
+            <div class="embed-responsive embed-responsive-16by9" style="margin: 15px 0 15px 0"
+                 ng-show="post.template == 1" ng-controller="TrustController">
+                <iframe class="embed-responsive-item"
+                        ng-src="{{trustSrc(post.image)}}"
+                        frameborder="0" allowfullscreen></iframe>
+            </div>
+
             <div class="article">
 
                 <div class="article-body">
@@ -82,8 +93,15 @@
 
         <div ng-repeat="comment in comments" class="col-md-12"
              style="border: 1px solid #ccc; padding: 0 0 0 0; margin-bottom: 15px;">
-            <div class="col-md-2" style="padding: 0 0 0 0;">
-                <img class="img-thumbnail" width="100%" ng-src="{{comments[$index].user.photo}}"/>
+            <div class="article-header" ng-show="post.template == 0">
+                <img ng-src="{{post.image}}" alt="">
+            </div>
+
+            <div class="embed-responsive embed-responsive-16by9" style="margin: 15px 0 0 0"
+                 ng-show="post.template == 1" ng-controller="TrustController">
+                <iframe class="embed-responsive-item"
+                        ng-src="{{trustSrc(post.image)}}"
+                        frameborder="0" allowfullscreen></iframe>
             </div>
             <div class="col-md-10">
                 <div style="border-bottom: 1px solid #ccc; padding: 10px 0 10px 0; font-size: 14px">
@@ -96,7 +114,7 @@
                     <div style="float: right;">
                         <label> {{comment.likes.length}} </label>
                         <sec:authorize access="isAuthenticated()">
-                        <a href="#" ng-click="changeLikes(comment.id)" class="text-primary"></sec:authorize>
+                        <a href="#" ng-click="changeLikes(comment.id)" class="text-primary" style="text-decoration: none;"></sec:authorize>
                             <span class="icon-heart">
                         </span>
                         </a>

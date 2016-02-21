@@ -3,11 +3,6 @@
  */
 
 angular.module('myApp')
-    .controller('TrustController', function($scope, $sce) {
-        $scope.trustSrc = function(src) {
-            return $sce.trustAsResourceUrl(src);
-        };
-    })
     .controller('postController', function ($scope, $http) {
         $scope.isUploading = false;
         $scope.isPictureExist = false;
@@ -30,7 +25,7 @@ angular.module('myApp')
 
 
         $scope.setTemplate = function (value) {
-            if (value >= 0 || value <= 2) {
+            if (value >= 0 || value <= 1) {
                 $scope.templateType = value;
             }
             else {
@@ -39,10 +34,14 @@ angular.module('myApp')
         };
 
         $scope.handleYouTube = function (video) {
-            $scope.readyYouTube = video.replace('watch?v=', 'embed/');
-            $scope.readyYouTube.replace('&index=18&', '?');
-            $scope.readyYouTube.replace('&', '?');
-            return $scope.readyYouTube;
+            if (typeof video !== 'undefined') {
+                $scope.readyYouTube = video.replace('watch?v=', 'embed/');
+                $scope.readyYouTube.replace('&index=18&', '?');
+                $scope.readyYouTube.replace('&', '?');
+                return $scope.readyYouTube;
+            }
+            return " ";
+
         };
 
         $scope.showTemplate = function () {
@@ -61,14 +60,13 @@ angular.module('myApp')
             });
         };
 
-
         $scope.getPosts();
         $scope.savePost = function () {
             $scope.isUploading = true;
             var post = $scope.posts[$scope.currentIndex];
             post.title = $scope.title;
             post.text = CKEDITOR.instances.editor1.getData();
-            if(post.text.length>30000) {
+            if (post.text.length > 30000) {
                 alert("Too mush text")
                 return;
             }
@@ -155,35 +153,57 @@ angular.module('myApp')
                 }
             }
             $scope.post = {};
-
+            $scope.post.template = $scope.templateType;
+            alert($scope.post.template);
             $scope.post.text = CKEDITOR.instances.editor1.getData();
-            if($scope.post.text.length>30000) {
+            if ($scope.post.text.length > 30000) {
                 alert("Too mush text")
                 return;
             }
             $scope.post.category = $scope.category;
             $scope.post.tags = $scope.tags;
-            $scope.saveImage()
-                .then(function (response) {
-                    $scope.post.image = response.data.data;
-                })
-                .then(function () {
-                    $scope.getPosts();
-                }, function () {
-                    console.log("empty image")
+            if ($scope.post.template == 0) {
+
+                $scope.saveImage()
+                    .then(function (response) {
+                        $scope.post.image = response.data.data;
+                    })
+                    .then(function () {
+                        $scope.getPosts();
+                    }, function () {
+                        console.log("empty image")
+                    }).then(function () {
+                    $scope.post.title = $scope.title;
+                    return $http({
+                        method: 'POST',
+                        url: '/savepost',
+                        headers: {'Content-Type': undefined},
+                        data: $scope.post
+                    })
                 }).then(function () {
+                    $scope.getPosts();
+                    $scope.showField = false;
+                    $scope.getAchievements();
+                });
+            } else {
+                $scope.post.image = $scope.readyYouTube;
+                if ($scope.post.image === "") {
+                    alert("Please insert video URL");
+                    return;
+                }
                 $scope.post.title = $scope.title;
-                return $http({
+                $http({
                     method: 'POST',
                     url: '/savepost',
                     headers: {'Content-Type': undefined},
                     data: $scope.post
-                })
-            }).then(function () {
-                $scope.getPosts();
-                $scope.showField = false;
-                $scope.getAchievements();
-            });
+                }).then(function successCallback(response) {
+                    $scope.getPosts();
+                    $scope.showField = false;
+                    $scope.getAchievements();
+                }, function errorCallback(response) {
+                });
+            }
         }
         $scope.saveImage = function () {
             return $http({
