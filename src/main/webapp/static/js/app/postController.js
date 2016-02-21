@@ -68,6 +68,10 @@ angular.module('myApp')
             var post = $scope.posts[$scope.currentIndex];
             post.title = $scope.title;
             post.text = CKEDITOR.instances.editor1.getData();
+            if(post.text.length>30000) {
+                alert("Too mush text")
+                return;
+            }
             post.category = $scope.category;
             post.tags = $scope.tags;
             var isUnique = true;
@@ -140,7 +144,6 @@ angular.module('myApp')
         };
 
         $scope.newPost = function () {
-
             if ($scope.title == "" || $scope.title == undefined) {
                 alert("Title must not be empty!")
                 return;
@@ -154,6 +157,10 @@ angular.module('myApp')
             $scope.post = {};
 
             $scope.post.text = CKEDITOR.instances.editor1.getData();
+            if($scope.post.text.length>30000) {
+                alert("Too mush text")
+                return;
+            }
             $scope.post.category = $scope.category;
             $scope.post.tags = $scope.tags;
             $scope.saveImage()

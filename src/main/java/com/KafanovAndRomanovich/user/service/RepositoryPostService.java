@@ -69,6 +69,7 @@ public class RepositoryPostService implements PostService {
             postUser.setLastName(post.getUser().getLastName());
             postUser.setEmail(post.getUser().getEmail());
             postUser.setComments(post.getComments());
+            postUser.setTemplate(post.getTemplate());
             postUser.setRating(ratingService.getScore(post));
             postUser.setTags(post.getTags());
             result.add(postUser);

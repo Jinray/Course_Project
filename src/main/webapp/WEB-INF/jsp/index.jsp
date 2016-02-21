@@ -69,16 +69,16 @@
                                             </div>
                                         </div>
 
-                                        <div class="form-group" ng-show="templateType == 2" ng-controller="TrustController">
-                                            <h4>YouTube video URL:</h4>
-                                            <input maxlength="150" class="form-control" ng-model="video" required>
-                                            <div class="embed-responsive embed-responsive-16by9"
-                                                 style="margin: 15px 0 0 0 ">
-                                                <iframe class="embed-responsive-item"
-                                                        ng-src="{{trustSrc(handleYouTube(video))}}"
-                                                        frameborder="0" allowfullscreen></iframe>
-                                            </div>
-                                        </div>
+                                        <%--<div class="form-group" ng-show="templateType == 2" ng-controller="TrustController">--%>
+                                            <%--<h4>YouTube video URL:</h4>--%>
+                                            <%--<input maxlength="150" class="form-control" ng-model="video" required>--%>
+                                            <%--<div class="embed-responsive embed-responsive-16by9"--%>
+                                                 <%--style="margin: 15px 0 0 0 ">--%>
+                                                <%--<iframe class="embed-responsive-item"--%>
+                                                        <%--ng-src="{{trustSrc(handleYouTube(video))}}"--%>
+                                                        <%--frameborder="0" allowfullscreen></iframe>--%>
+                                            <%--</div>--%>
+                                        <%--</div>--%>
 
                                         <div class="form-group">
                                             <h4><spring:message code="label.post.title"/></h4>
@@ -160,6 +160,7 @@
                                                class="article-title article-title-1 article-title-font">
                                                 {{post.title}}
                                             </a>
+
                                             <div class="article-info">
                                                 <spring:message code="label.post.postCategory"/>:
                                                 <a href="${pageContext.request.contextPath}/user/login/category={{post.category}}"

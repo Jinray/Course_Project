@@ -36,6 +36,7 @@ public class Post {
     @Field(index=Index.YES, analyze=Analyze.YES, store=Store.NO)
     private String category;
     private String image;
+    private Integer template;
 
     @OneToMany(mappedBy = "post",cascade=CascadeType.ALL,
             fetch = FetchType.EAGER,orphanRemoval = true)
@@ -53,6 +54,15 @@ public class Post {
             break;
         }
     }}
+
+    public Integer getTemplate() {
+        return template;
+    }
+
+    public void setTemplate(Integer template) {
+        this.template = template;
+    }
+
     public void setRatings(List<Rating> ratings) {
         this.ratings = ratings;
     }

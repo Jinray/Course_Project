@@ -23,6 +23,7 @@ public class Comment {
     @GeneratedValue
     private Long id;
     @Field
+    @Column(name = "text", columnDefinition="TEXT")
     private String text;
     private Date date;
 

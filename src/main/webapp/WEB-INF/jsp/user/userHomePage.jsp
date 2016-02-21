@@ -24,10 +24,12 @@
                                 </div>
                                 <div class="article">
                                     <div class="article-body">
-                                        <a href="${pageContext.request.contextPath}/user/singlePost/{{post.id}}"
-                                           class="article-title article-title-1 article-title-font">
-                                            {{post.title}}
-                                        </a>
+                                        <div class="article-title article-title-1 article-title-font">
+                                            <a style="display: inline-block;" href="${pageContext.request.contextPath}/user/singlePost/{{post.id}}">
+                                                {{post.title}}
+                                            </a>
+                                            <span style="float: right;"><spring:message code="label.post.rating"/> {{post.rating}}</span>
+                                        </div>
                                         <div class="article-info">
 
                                             <spring:message code="label.post.postCategory"/>:

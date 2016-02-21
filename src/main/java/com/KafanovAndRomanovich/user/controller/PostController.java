@@ -47,9 +47,10 @@ public class PostController {
     @RequestMapping(value = "/getposts", method = RequestMethod.GET)
     public List<Post> getPosts(Principal principal) {
         User user = userService.findUser(principal.getName());
-        List<Post> result = user.getPosts();
-        Collections.reverse(result);
-        return result;
+        List<Post> posts = user.getPosts();
+       // List<PostUser> result=postService.getAllPosts(posts);
+        Collections.reverse(posts);
+        return posts;
     }
 
     @RequestMapping(value = "/getPopularPosts", method = RequestMethod.GET)
@@ -211,9 +212,10 @@ public class PostController {
     }
 
     @RequestMapping(value = "/getUserHomePagePosts", method = RequestMethod.POST)
-    public List<Post> getUserHomePagePosts(@RequestBody Long id) {
+    public List<PostUser> getUserHomePagePosts(@RequestBody Long id) {
         User user = userService.findOne(id);
-        List<Post> result = user.getPosts();
+        List<Post> posts = user.getPosts();
+        List<PostUser> result=postService.getAllPosts(posts);
         Collections.reverse(result);
         return result;
     }

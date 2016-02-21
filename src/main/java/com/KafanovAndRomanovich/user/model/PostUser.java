@@ -1,8 +1,6 @@
 package com.KafanovAndRomanovich.user.model;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+
 import java.util.Date;
 import java.util.List;
 
@@ -22,10 +20,19 @@ public class PostUser implements Comparable<PostUser> {
     private String category;
     private String image;
     private String email;
+    private Integer template;
     private List<Comment> comments;
     private List<Tag> tags;
     public Long getUserId() {
         return userId;
+    }
+
+    public Integer getTemplate() {
+        return template;
+    }
+
+    public void setTemplate(Integer template) {
+        this.template = template;
     }
 
     public void setUserId(Long userId) {

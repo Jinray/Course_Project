@@ -73,6 +73,10 @@ angular.module('myApp')
 
         $scope.commentPost.id=$scope.id;
         $scope.commentPost.text=CKEDITOR.instances.editor1.getData();
+        if($scope.commentPost.text.length>5000) {
+            alert("Too mush text")
+            return;
+        }
         $http({
             method: 'POST',
             url: '/saveComment',
