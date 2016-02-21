@@ -101,7 +101,7 @@
                                         </div>
                                         <div class="form-group">
                                             <h4><spring:message code="label.post.tags"/></h4>
-                                            <div ng-controller="tagsController">
+                                            <div>
                                                 <tags-input ng-model="tags"
                                                             display-property="text"
                                                             placeholder="Add a tag"

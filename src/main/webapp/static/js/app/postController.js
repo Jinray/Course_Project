@@ -24,13 +24,8 @@ angular.module('myApp')
         $scope.templateType = 0;
         $scope.readyYouTube = "";
 
-        $scope.handleDrop = function () {
-            console.log($scope.postImage);
-            if (typeof $scope.postImage !== 'undefined') {
-                $scope.isPictureExist = true;
-            }
 
-        };
+
 
         $scope.setTemplate = function (value) {
             if (value >= 0 || value <= 1) {

@@ -72,6 +72,7 @@ angular.module('myApp')
             data: tags
         }).then(function successCallback(response) {
             $scope.articles=response.data;
+            console.log($scope.articles)
         }, function errorCallback(response) {
         });
     };
