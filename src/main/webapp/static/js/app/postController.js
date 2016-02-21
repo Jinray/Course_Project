@@ -8,6 +8,7 @@ angular.module('myApp')
         $scope.isPictureExist = false;
         $scope.posts = [];
         $scope.currentIndex;
+        $scope.currentTemplate = -1;
         $scope.title;
         $scope.text;
         $scope.tags = [];
@@ -123,6 +124,7 @@ angular.module('myApp')
                 $scope.isDeleted = false;
             $scope.title = $scope.posts[index].title;
             $scope.currentIndex = index;
+            $scope.currentTemplate = $scope.post[index].template;
             $scope.text = $scope.posts[$scope.currentIndex].text;
             if ($scope.posts[$scope.currentIndex].image !== null) {
                 $scope.postImage = $scope.posts[$scope.currentIndex].image;

@@ -12,6 +12,8 @@
 <body>
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/app/postController.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/app/tagCloudController.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/app/TrustController.js"></script>
+
 
 <div ng-app="myApp" ng-controller="postController" class="col-md-10" style="margin: 0 8% 0 8%">
 
@@ -23,15 +25,30 @@
             <form class="form-horizontal" name="editingArticle">
                 <fieldset style="padding: 0 3% 0 3%">
                     <div class="form-group">
-                        <h4><spring:message code="label.post.upload"/></h4>
-                        <div class="dropzone" file-dropzone="[image/png, image/jpeg, image/gif]"
-                             file="postImage" file-name="imageFileName" data-max-file-size="3">
-                            <h4><spring:message code="label.post.dropzone"/></h4>
+
+                        <div class="form-group" ng-show="currentTemplate == 0">
+                            <h4><spring:message code="label.post.upload"/></h4>
+                            <div class="dropzone" file-dropzone="[image/png, image/jpeg, image/gif]"
+                                 file="postImage" file-name="imageFileName" data-max-file-size="3">
+                                <h4><spring:message code="label.post.dropzone"/></h4>
+                            </div>
+                            <div class="postImageContainer">
+                                <img ng-src="{{postImage}}"/>
+                            </div>
                         </div>
 
-                        <div ng-show="isPictureExist" class="postImageContainer">
-                            <img ng-src="{{postImage}}"/>
+                        <div class="form-group" ng-show="currentTemplate == 1" ng-controller="TrustController">
+                            <h4><spring:message code="label.post.youtube"/></h4>
+                            <input maxlength="150" class="form-control" ng-model="video">
+                            <div class="embed-responsive embed-responsive-16by9"
+                                 style="margin: 15px 0 0 0 ">
+                                <iframe class="embed-responsive-item"
+                                        ng-src="{{trustSrc(handleYouTube(video))}}"
+                                        frameborder="0" allowfullscreen></iframe>
+                            </div>
                         </div>
+
+
                     </div>
 
                     <div class="form-group">

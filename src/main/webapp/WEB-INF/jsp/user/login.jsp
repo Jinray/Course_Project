@@ -170,13 +170,8 @@
                                             <img width="100%" ng-src="{{pop.image}}" alt=""/>
                                         </a>
 
-                                        <a href="${pageContext.request.contextPath}/user/singlePost/{{pop.id}}">
-                                            <div class="embed-responsive embed-responsive-16by9"
-                                                 ng-show="pop.template == 1" ng-controller="TrustController">
-                                                <iframe class="embed-responsive-item"
-                                                        ng-src="{{trustSrc(pop.image)}}"
-                                                        frameborder="0" allowfullscreen></iframe>
-                                            </div>
+                                        <a href="${pageContext.request.contextPath}/user/singlePost/{{pop.id}}" ng-show="pop.template == 1">
+                                            <img width="100%" src="${pageContext.request.contextPath}/static/images/youtube.png" alt=""/>
                                         </a>
                                     </div>
                                     <div class="col-md-9">
