@@ -138,9 +138,12 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
+                                            <div ng-show="isUploading" class="progress progress-striped active">
+                                                <div class="progress-bar" style="width: 100%"></div>
+                                            </div>
                                             <button style="margin:5px 0 5px 0"
                                                     class="btn btn-primary btn-block" type="submit"
-                                                    ng-disabled="newArticle.$invalid"
+                                                    ng-disabled="newArticle.$invalid || isUploading"
                                                     ng-click="newPost();"><spring:message
                                                     code="label.post.publish"/></button>
                                         </div>

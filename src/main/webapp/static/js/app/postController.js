@@ -15,14 +15,13 @@ angular.module('myApp')
         $scope.postListLen = 0;
         var e = document.getElementById("category");
         $scope.category = e.options[e.selectedIndex].value;
-        $scope.paste;
         $scope.showField = false;
-        $scope.isDeleted = false;
         $scope.achievements = [];
         $scope.video;
         $scope.showField = false;
         $scope.templateType = 0;
         $scope.readyYouTube = "";
+        $scope.showEditor=false;
 
 
 
@@ -126,7 +125,6 @@ angular.module('myApp')
         };
 
         $scope.deletePost = function (index) {
-            $scope.isDeleted = true;
             var post = $scope.posts[index];
             $http({
                 method: 'POST',
@@ -134,19 +132,17 @@ angular.module('myApp')
                 headers: {'Content-Type': undefined},
                 data: post
             }).then(function successCallback(response) {
+                $scope.showEditor=false;
                 $scope.getPosts();
             }, function errorCallback(response) {
                 $scope.getPosts();
+                $scope.showEditor=false;
             });
         };
 
-        //setting code from file
         $scope.setPost = function (index) {
+            $scope.showEditor=true;
             $scope.postImage=" ";
-            //$scope.isUploading = false;
-            if ($scope.currentIndex != undefined && !$scope.isDeleted) {
-                $scope.isDeleted = false;
-            }
             $scope.title = $scope.posts[index].title;
             $scope.currentIndex = index;
             $scope.currentTemplate = $scope.posts[index].template;
@@ -172,6 +168,7 @@ angular.module('myApp')
         };
 
         $scope.newPost = function () {
+            $scope.isUploading = true;
             if ($scope.title == "" || $scope.title == undefined) {
                 alert("Title must not be empty!")
                 return;
@@ -212,6 +209,7 @@ angular.module('myApp')
                 }).then(function () {
                     $scope.getPosts();
                     $scope.showField = false;
+                    $scope.isUploading = false;
                     $scope.getAchievements();
                 });
             } else {
@@ -229,6 +227,7 @@ angular.module('myApp')
                 }).then(function successCallback(response) {
                     $scope.getPosts();
                     $scope.showField = false;
+                    $scope.isUploading = false;
                     $scope.getAchievements();
                 }, function errorCallback(response) {
                 });

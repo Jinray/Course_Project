@@ -21,7 +21,7 @@
             <div class="panel-heading">
                 <h4 class="panel-title"><spring:message code="label.post.edit.title"/></h4>
             </div>
-            <form class="form-horizontal" name="editingArticle">
+            <form ng-show="showEditor" class="form-horizontal" name="editingArticle">
                 <fieldset style="padding: 0 3% 0 3%">
                     <div class="form-group" ng-show="currentTemplate == 0">
                         <h4><spring:message code="label.post.upload"/></h4>
@@ -105,6 +105,9 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <div ng-show="isUploading" class="progress progress-striped active">
+                            <div class="progress-bar" style="width: 100%"></div>
+                        </div>
                         <button style="margin:5px 0 5px 0" ng-click="savePost();"
                                 class="btn btn-primary btn-block" type="submit" ng-disabled="editingArticle.$invalid"
                         ><spring:message code="label.user.saveChanges"/></button>
@@ -128,9 +131,7 @@
                     <a href="javascript:void(0)" ng-click="deletePost($index);" style="text-decoration: none;"><span
                             class="icon-remove" style="font-size: 2em; float: right;"></span></a>
                 </div>
-                <div ng-show="isUploading" class="progress progress-striped active">
-                    <div class="progress-bar" style="width: 100%"></div>
-                </div>
+
             </div>
         </div>
 
