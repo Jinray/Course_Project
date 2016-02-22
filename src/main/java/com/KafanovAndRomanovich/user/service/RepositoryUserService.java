@@ -17,9 +17,7 @@ import javax.persistence.PersistenceContext;
 import java.security.Principal;
 import java.util.List;
 
-/**
- * @author Petri Kainulainen
- */
+
 
 @Service
 @Transactional

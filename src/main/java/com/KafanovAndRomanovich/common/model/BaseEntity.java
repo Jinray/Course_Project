@@ -1,12 +1,8 @@
 package com.KafanovAndRomanovich.common.model;
 
-
-
 import javax.persistence.*;
 
-/**
- * @author Petri Kainulainen
- */
+
 @MappedSuperclass
 public abstract class BaseEntity<ID> {
 

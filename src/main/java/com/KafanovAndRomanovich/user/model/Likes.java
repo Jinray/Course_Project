@@ -5,9 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 
-/**
- * Created by Alex on 18.02.2016.
- */
+
 @Entity
 @Table(name="likes")
 public class Likes {

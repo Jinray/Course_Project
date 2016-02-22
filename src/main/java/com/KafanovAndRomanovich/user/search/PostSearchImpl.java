@@ -13,9 +13,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
-/**
- * Created by Alex on 17.02.2016.
- */
+
 @Repository
 @Transactional
 public class PostSearchImpl implements Search {

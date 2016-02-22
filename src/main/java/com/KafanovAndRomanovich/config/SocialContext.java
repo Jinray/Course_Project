@@ -21,9 +21,7 @@ import org.springframework.social.vkontakte.connect.VKontakteConnectionFactory;
 
 import javax.sql.DataSource;
 
-/**
- * @author Petri Kainulainen
- */
+
 @Configuration
 @EnableSocial
 public class SocialContext implements SocialConfigurer {

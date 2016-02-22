@@ -4,9 +4,7 @@ package com.KafanovAndRomanovich.user.model;
 import java.util.Date;
 import java.util.List;
 
-/**
- * Created by Alex on 17.02.2016.
- */
+
 public class PostUser implements Comparable<PostUser> {
 
     private Long userId;

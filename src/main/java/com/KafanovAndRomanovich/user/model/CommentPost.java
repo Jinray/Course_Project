@@ -3,9 +3,7 @@ package com.KafanovAndRomanovich.user.model;
 import java.util.Date;
 import java.util.List;
 
-/**
- * Created by Alex on 16.02.2016.
- */
+
 public class CommentPost {
 
     private Long id;

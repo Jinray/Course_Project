@@ -18,9 +18,7 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
-/**
- * Created by Alex on 16.02.2016.
- */
+
 @RestController
 public class CommentController {
 

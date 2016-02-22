@@ -15,9 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Alex on 17.02.2016.
- */
+
 @RestController
 public class SearchController {
 

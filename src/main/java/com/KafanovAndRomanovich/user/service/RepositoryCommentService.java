@@ -8,9 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-/**
- * Created by Alex on 14.02.2016.
- */
+
 @Service
 @Transactional
 public class RepositoryCommentService implements CommentService {

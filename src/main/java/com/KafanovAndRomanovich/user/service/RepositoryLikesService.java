@@ -7,9 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-/**
- * Created by Alex on 18.02.2016.
- */
+
 @Service
 @Transactional
 public class RepositoryLikesService implements LikesService {

@@ -13,9 +13,7 @@ import javax.persistence.EntityManager;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Alex on 12.02.2016.
- */
+
 @Service
 @Transactional
 public class RepositoryPostService implements PostService {

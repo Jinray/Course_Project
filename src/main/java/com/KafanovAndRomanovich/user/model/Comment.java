@@ -12,9 +12,7 @@ import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
-/**
- * Created by Alex on 09.02.2016.
- */
+
 @Entity
 @Indexed
 @Table(name = "comments")

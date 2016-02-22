@@ -3,9 +3,7 @@ package com.KafanovAndRomanovich.config;
 import org.springframework.context.annotation.*;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 
-/**
- * @author Petri Kainulainen
- */
+
 @Configuration
 @ComponentScan(basePackages = {
         "com.KafanovAndRomanovich.user.service"

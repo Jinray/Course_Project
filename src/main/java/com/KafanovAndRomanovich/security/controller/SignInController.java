@@ -6,9 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-/**
- * Created by Alex on 07.02.2016.
- */
+
 @Controller
 public class SignInController {
     private static final Logger LOGGER = LoggerFactory.getLogger(SignInController.class);

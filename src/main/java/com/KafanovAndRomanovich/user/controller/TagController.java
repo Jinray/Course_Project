@@ -14,9 +14,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-/**
- * Created by Alex on 12.02.2016.
- */
+
 @RestController
 public class TagController {
 

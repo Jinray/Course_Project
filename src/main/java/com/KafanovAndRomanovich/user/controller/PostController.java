@@ -22,9 +22,7 @@ import java.util.*;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by Alex on 10.02.2016.
- */
+
 @RestController
 public class PostController {
 
@@ -48,7 +46,6 @@ public class PostController {
     public List<Post> getPosts(Principal principal) {
         User user = userService.findUser(principal.getName());
         List<Post> posts = user.getPosts();
-       // List<PostUser> result=postService.getAllPosts(posts);
         Collections.reverse(posts);
         return posts;
     }

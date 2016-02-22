@@ -3,7 +3,7 @@ package com.KafanovAndRomanovich.security.service;
 import com.KafanovAndRomanovich.security.dto.ExampleUserDetails;
 import com.KafanovAndRomanovich.user.model.User;
 import com.KafanovAndRomanovich.user.repository.UserRepository;
-import com.sun.deploy.security.UserDeclinedException;
+import com.KafanovAndRomanovich.user.service.AccountUserBannedException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +41,8 @@ public class RepositoryUserDetailsService implements UserDetailsService {
             throw new UsernameNotFoundException("No user found with username: " + username);
         }
         if(user.getBaned())
-            throw new UsernameNotFoundException("Account is blocked!");
+                throw new AccountUserBannedException("Account is blocked!");
+
 
         ExampleUserDetails principal = ExampleUserDetails.getBuilder()
                 .firstName(user.getFirstName())

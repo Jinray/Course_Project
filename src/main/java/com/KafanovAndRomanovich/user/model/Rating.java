@@ -7,9 +7,7 @@ import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 
-/**
- * Created by Alex on 17.02.2016.
- */
+
 @Entity
 @Table(name="rating")
 public class Rating {

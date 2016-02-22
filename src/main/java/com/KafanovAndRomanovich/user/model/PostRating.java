@@ -1,8 +1,6 @@
 package com.KafanovAndRomanovich.user.model;
 
-/**
- * Created by Alex on 18.02.2016.
- */
+
 public class PostRating {
     private Long postId;
     private boolean positive;
