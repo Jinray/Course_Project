@@ -51,7 +51,6 @@ angular.module('myApp')
 
                 $scope.tagsCloud[j].weight = size;
             }
-            console.log($scope.tagsCloud);
         }
     });
 

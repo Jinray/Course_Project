@@ -31,6 +31,7 @@ public class PagesController {
     protected static final String VIEW_NAME_SINGLEPOST_PAGE = "user/singlePost";
     protected static final String VIEW_NAME_USERHOMEPAGE_PAGE = "user/userHomePage";
     protected static final String VIEW_NAME_STARTPAGE_PAGE = "user/login";
+    protected static final String VIEW_NAME_ADMIN_PAGE = "user/admin";
 
 
     @RequestMapping(value = "/user/signIn", method = RequestMethod.GET)
@@ -78,5 +79,10 @@ public class PagesController {
     public String showStartPageByTags(@PathVariable String tags, WebRequest webRequest) {
         LOGGER.debug("Rendering UserHomePage page.");
         return VIEW_NAME_STARTPAGE_PAGE;
+    }
+    @RequestMapping(value = "/user/admin/**", method = RequestMethod.GET)
+    public String showAdminPage(WebRequest webRequest) {
+        LOGGER.debug("Rendering Admin page.");
+        return VIEW_NAME_ADMIN_PAGE;
     }
 }

@@ -57,6 +57,7 @@ public class User extends BaseEntity<Long> {
     private String skype;
     private String interests;
 
+    private Boolean isBaned=false;
 
     public List<Achievement> getAchievements() {
         return achievements;
@@ -94,7 +95,13 @@ public class User extends BaseEntity<Long> {
     private List<Likes> likes;
 
 
+    public Boolean getBaned() {
+        return isBaned;
+    }
 
+    public void setBaned(Boolean baned) {
+        isBaned = baned;
+    }
     public void addComment(Comment comment){comments.add(comment);}
     public void addAchievement(Achievement achievement){
         achievements.add(achievement);

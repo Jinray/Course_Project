@@ -101,7 +101,7 @@
                                         </div>
                                         <div class="form-group">
                                             <h4><spring:message code="label.post.tags"/></h4>
-                                            <div>
+                                            <div ng-controller="tagsController">
                                                 <tags-input ng-model="tags"
                                                             display-property="text"
                                                             placeholder="Add a tag"
@@ -137,7 +137,7 @@
                                                 </script>
                                             </div>
                                         </div>
-                                        <div class="form-group">
+                                        <div  class="form-group">
                                             <div ng-show="isUploading" class="progress progress-striped active">
                                                 <div class="progress-bar" style="width: 100%"></div>
                                             </div>
@@ -232,7 +232,7 @@
                             <h4 class="sidebar-block-header nav-tabs">
                                 <spring:message code="label.user.achievements"/></h4>
 
-                            <div class="col-md-6" style="float: left; padding: 0 0 0 0; margin: 5px 0 0 0;"
+                            <div class="col-md-6 medal"
                                  ng-repeat="achiva in achievements">
                                 <img data-toggle="tooltip" title="{{achiva.description}}" width="100%"
                                      ng-src="{{achiva.value}}">

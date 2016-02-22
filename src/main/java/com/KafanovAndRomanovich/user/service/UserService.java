@@ -3,6 +3,8 @@ package com.KafanovAndRomanovich.user.service;
 import com.KafanovAndRomanovich.user.model.User;
 import com.KafanovAndRomanovich.user.dto.RegistrationForm;
 
+import java.util.List;
+
 
 public interface UserService {
 
@@ -17,4 +19,5 @@ public interface UserService {
     User findOne(Long id);
     User updateUser(User user);
     User save(User user);
+    List<User> findAll();
 }

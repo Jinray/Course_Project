@@ -64,11 +64,16 @@
         <security:intercept-url pattern="/getUserInfo" access="permitAll"/>
         <security:intercept-url pattern="/getAchievements" access="permitAll"/>
         <security:intercept-url pattern="/getUserAchievements" access="permitAll"/>
+        <security:intercept-url pattern="/banOrUnBanUser" access="permitAll"/>
+
+
+        <security:intercept-url pattern="/getAllUsers" access="hasRole('USER_ADMIN')"/>
+        <security:intercept-url pattern="/user/admin/**" access="hasRole('USER_ADMIN')"/>
 
 
 
         <!-- The rest of our application is protected. -->
-        <security:intercept-url pattern="/**" access="hasRole('ROLE_USER')"/>
+        <security:intercept-url pattern="/**" access="hasAnyRole('ROLE_USER','ROLE_ADMIN')"/>
         <!--<security:intercept-url pattern="/**" access="hasRole('ROLE_ADMIN')"/>-->
 
         <!-- Adds social authentication filter to the Spring Security filter chain. -->

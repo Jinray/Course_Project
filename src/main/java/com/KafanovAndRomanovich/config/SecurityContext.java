@@ -104,6 +104,7 @@ public class SecurityContext extends WebSecurityConfigurerAdapter {
                                 "/user/singlePost/**",
                                 "user/templates/**",
                                 "/getprofile",
+                                "/banOrUnBanUser",
                                 "/getUserInfo",
                                 "/saveprofile",
                                 "/savepost",
@@ -135,8 +136,12 @@ public class SecurityContext extends WebSecurityConfigurerAdapter {
                         ).permitAll()
                         //The rest of the our application is protected.
 
-                        .antMatchers("/**").hasRole("USER")
-//                        .antMatchers("/**").hasRole("ADMIN")
+                        .antMatchers("/**").hasAnyRole("USER","ADMIN")
+                        .antMatchers("/user/admin/**").hasRole("ADMIN")
+                        .antMatchers("/getAllUsers").hasRole("ADMIN")
+
+
+
                 //Adds the SocialAuthenticationFilter to Spring Security's filter chain.
                 .and()
                     .apply(new SpringSocialConfigurer());

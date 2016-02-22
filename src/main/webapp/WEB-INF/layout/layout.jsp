@@ -83,7 +83,8 @@
                             code="label.navigation.registration.link"/></a></li>
                 </sec:authorize>
                 <sec:authorize access="hasRole('ROLE_ADMIN')">
-                    <li><a href="">ADMIN</a></li>
+                    <li><a href="${pageContext.request.contextPath}/user/admin"><spring:message
+                            code="label.navigation.admin"/></a></li>
                 </sec:authorize>
 
                 <sec:authorize access="isAuthenticated()">

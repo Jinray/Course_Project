@@ -131,7 +131,6 @@
                     <a href="javascript:void(0)" ng-click="deletePost($index);" style="text-decoration: none;"><span
                             class="icon-remove" style="font-size: 2em; float: right;"></span></a>
                 </div>
-
             </div>
         </div>
 

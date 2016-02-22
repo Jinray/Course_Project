@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.security.Principal;
+import java.util.List;
 
 /**
  * @author Petri Kainulainen
@@ -107,7 +108,7 @@ public class RepositoryUserService implements UserService {
 
     @Override
     public User updateUser(User user) {
-        User oldUser=findUser(user.getEmail());
+        User oldUser=findOne(user.getId());
         oldUser.setLastName(user.getLastName());
         oldUser.setFirstName(user.getFirstName());
         oldUser.setPhoto(user.getPhoto());
@@ -122,6 +123,11 @@ public class RepositoryUserService implements UserService {
     @Override
     public User save(User user) {
         return repository.save(user);
+    }
+
+    @Override
+    public List<User> findAll() {
+        return repository.findAll();
     }
 
 }
