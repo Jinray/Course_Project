@@ -9,18 +9,13 @@
 
     <title></title>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/social-buttons-3.css"/>
-    <%--<link type="text/css" data-themecolor="default" rel='stylesheet'--%>
-    <%--href="${pageContext.request.contextPath}/static/css/main-default.css">--%>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-    <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/app/color-themes.js"></script>
     <script type="text/javascript"
             src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1','packages':['corechart']}]}"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/app/cookie.js"></script>
 
 </head>
 <body>
-<div class="mask-l"
-     style="background-color: #fff; width: 100%; height: 100%; position: fixed; top: 0; left:0; z-index: 9999999;"></div>
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/app/postDirective.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/app/startPageController.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/app/tagCloudController.js"></script>

@@ -45,7 +45,6 @@ angular.module('myApp')
                 return $scope.readyYouTube;
             }
             return "";
-
         };
 
         $scope.showTemplate = function () {
@@ -72,6 +71,7 @@ angular.module('myApp')
             post.text = CKEDITOR.instances.editor1.getData();
             if (post.text.length > 30000) {
                 alert("Too mush text")
+                $scope.isUploading = false;
                 return;
             }
             post.category = $scope.category;
@@ -170,12 +170,13 @@ angular.module('myApp')
         $scope.newPost = function () {
             $scope.isUploading = true;
             if ($scope.title == "" || $scope.title == undefined) {
-                alert("Title must not be empty!")
+                $scope.isUploading = false;
                 return;
             }
             for (var i = 0; i < $scope.posts.length; i++) {
                 if ($scope.title == $scope.posts[i].title) {
                     alert("The same post is already exist!")
+                    $scope.isUploading = false;
                     return;
                 }
             }

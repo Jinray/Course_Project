@@ -64,7 +64,10 @@
         <security:intercept-url pattern="/getUserInfo" access="permitAll"/>
         <security:intercept-url pattern="/getAchievements" access="permitAll"/>
         <security:intercept-url pattern="/getUserAchievements" access="permitAll"/>
-        <security:intercept-url pattern="/banOrUnBanUser" access="permitAll"/>
+
+        <security:intercept-url pattern="/banOrUnBanUser" access="hasRole('USER_ADMIN')"/>
+        <security:intercept-url pattern="/deletePostByAdmin" access="hasRole('USER_ADMIN')"/>
+        <security:intercept-url pattern="/savePostByAdmin" access="hasRole('USER_ADMIN')"/>
 
 
         <security:intercept-url pattern="/getAllUsers" access="hasRole('USER_ADMIN')"/>

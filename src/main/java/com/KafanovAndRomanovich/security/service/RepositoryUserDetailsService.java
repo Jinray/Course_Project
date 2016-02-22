@@ -40,6 +40,8 @@ public class RepositoryUserDetailsService implements UserDetailsService {
         if (user == null) {
             throw new UsernameNotFoundException("No user found with username: " + username);
         }
+        if(user.getBaned())
+            throw new UsernameNotFoundException("Account is blocked!");
 
         ExampleUserDetails principal = ExampleUserDetails.getBuilder()
                 .firstName(user.getFirstName())

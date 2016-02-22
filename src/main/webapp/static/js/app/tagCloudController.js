@@ -40,8 +40,8 @@ angular.module('myApp')
                 }
             }
 
-            var minSize = 1;
-            var maxSize = 3.5;
+            var minSize = 0.8;
+            var maxSize = 2.8;
 
             for (var j in $scope.tagsCloud)
             {

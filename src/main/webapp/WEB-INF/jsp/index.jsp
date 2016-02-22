@@ -19,9 +19,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/app/tagCloudController.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/app/TrustController.js"></script>
 
-<div class="mask-l"
-     style="background-color: #fff; width: 100%; height: 100%; position: fixed; top: 0; left:0; z-index: 100;"></div>
-<!--removed by integration-->
+
 <div ng-controller="TestCtrl">
     <div ng-app="myApp" ng-controller="profileController">
         <div ng-controller="postController" class="l-inner-page-container">

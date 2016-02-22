@@ -23,7 +23,6 @@
     <script type="text/javascript"
             src="${pageContext.request.contextPath}/static/js/app/ng-infinite-scroll_min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/app/ng-tags-input.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/app/color-themes.js"></script>
     <script type="text/javascript"
             src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1','packages':['corechart']}]}"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/app/cookie.js"></script>
